@@ -22,6 +22,7 @@ import com.business.project.gold.config.RetrofitConfig;
 import com.business.project.gold.domain.CouponCodeDetailsDto;
 import com.business.project.gold.domain.CouponCodeRedeemResponse;
 import com.business.project.gold.utils.NetworkUtils;
+import com.google.gson.Gson;
 
 import java.io.IOException;
 import java.time.LocalDate;
@@ -197,17 +198,11 @@ public class HomeScreenActivity extends Activity {
                 tvResult.setVisibility(View.VISIBLE);
 
                 if (response.isSuccessful()) {
-                    // Success case
                     tvResult.setText(response.body().message());
                     tvResult.setTextColor(ContextCompat.getColor(HomeScreenActivity.this, R.color.green));
-                    // dialog.dismiss();
                 } else {
-                    // Error case: Read the error message from the response body
                     try {
-                        String errorMessage = response.errorBody() != null
-                                ? response.errorBody().string()
-                                : "Unknown error occurred.";
-
+                        String errorMessage = new Gson().fromJson(response.errorBody().string(), CouponCodeRedeemResponse.class).message();
                         tvResult.setText(errorMessage);
                         tvResult.setTextColor(ContextCompat.getColor(HomeScreenActivity.this, R.color.red));
                     } catch (Exception e) {
@@ -220,7 +215,6 @@ public class HomeScreenActivity extends Activity {
 
             @Override
             public void onFailure(@NonNull Call<CouponCodeRedeemResponse> call, @NonNull Throwable t) {
-                // Network or server failure
                 tvResult.setVisibility(View.VISIBLE);
                 tvResult.setText("Error: Unable to redeem coupon.");
                 tvResult.setTextColor(ContextCompat.getColor(HomeScreenActivity.this, R.color.red));
