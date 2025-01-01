@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">Vivaha</string>
+    <string name="action_settings">Settings</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="new_order_label">New Order</string>
+    <string name="view_orders_label">View Orders</string>
+    <string name="revenue_label">Revenue</string>
+    <string name="inventory_label">Inventory</string>
+    <string name="investor_details_label">Investor Details</string>
+
+    <string-array name="order_type_list">
+        <item>DIRECT</item>
+        <item>MUA</item>
+        <item>REFERRAL</item>
+    </string-array>
+    <string name="title_activity_view_orders">ViewOrdersActivity</string>
+    <string name="vivaha_contacts">WhatsApp - 9943680531\nContact - 7418428357 / 7708709385</string>
+</resources>

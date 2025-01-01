@@ -1,0 +1,33 @@
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="16dp">
+
+    <EditText
+        android:id="@+id/cancellationCharges"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter Cancellation Charges"
+        android:inputType="numberDecimal" />
+
+    <CheckBox
+        android:id="@+id/isAdvanceReturned"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Advance amount returned fully to customer"
+        android:layout_below="@id/cancellationCharges"
+        android:layout_marginTop="16dp" />
+
+    <Button
+        android:id="@+id/submitButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Cancel Order"
+        android:background="@color/red"
+        android:textColor="@color/white"
+        android:layout_below="@id/isAdvanceReturned"
+        android:layout_marginTop="16dp"
+        android:textSize="16sp"/>
+
+</RelativeLayout>

@@ -1,0 +1,528 @@
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <!-- ScrollView for the CardView content -->
+    <ScrollView
+        android:id="@+id/scrollable_content"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/fixed_buttons"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/order_card_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            card_view:cardCornerRadius="12dp"
+            card_view:cardElevation="8dp"
+            card_view:cardPreventCornerOverlap="true"
+            card_view:cardUseCompatPadding="true"
+            card_view:layout_constraintBottom_toTopOf="@+id/constraintLayout"
+            card_view:layout_constraintTop_toTopOf="parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:background="@drawable/event_onclick"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/order_id"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:ellipsize="end"
+                    android:hint="#1234567890"
+                    android:maxLines="1"
+                    android:padding="10dp"
+                    android:textAlignment="center"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    card_view:layout_constraintStart_toStartOf="parent"
+                    card_view:layout_constraintTop_toTopOf="parent" />
+
+                <View
+                    android:id="@+id/horizontalline"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#14000000" />
+
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="8dp">
+
+                    <androidx.constraintlayout.widget.Guideline
+                        android:id="@+id/center_guideline"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        card_view:layout_constraintGuide_percent="0.55" />
+
+                    <!-- Order Date -->
+                    <TextView
+                        android:id="@+id/orderDate_label"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="5dp"
+                        android:text="Order Date"
+                        android:textColor="@android:color/black"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/orderDate"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:hint="12-Dec-2024"
+                        android:padding="5dp"
+                        android:textColor="@android:color/black"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/center_guideline"
+                        app:layout_constraintTop_toTopOf="@+id/orderDate_label" />
+
+                    <!-- Function Date -->
+                    <TextView
+                        android:id="@+id/functionDateLabel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="5dp"
+                        android:text="Function Date"
+                        android:textColor="@android:color/black"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/orderDate_label" />
+
+                    <TextView
+                        android:id="@+id/functionDate"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:hint="15-Dec-2024"
+                        android:padding="5dp"
+                        android:textColor="@android:color/black"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/center_guideline"
+                        app:layout_constraintTop_toTopOf="@+id/functionDateLabel" />
+
+                    <!-- Order Type -->
+                    <TextView
+                        android:id="@+id/orderTypeLabel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="5dp"
+                        android:text="Order Type"
+                        android:textColor="@android:color/black"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/functionDateLabel" />
+
+                    <TextView
+                        android:id="@+id/orderType"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:hint="Online"
+                        android:padding="5dp"
+                        android:textColor="@android:color/black"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/center_guideline"
+                        app:layout_constraintTop_toTopOf="@+id/orderTypeLabel" />
+
+                    <!-- Status -->
+                    <TextView
+                        android:id="@+id/statusLabel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="5dp"
+                        android:text="Status"
+                        android:textColor="@android:color/black"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/orderTypeLabel" />
+
+                    <TextView
+                        android:id="@+id/status"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:hint="Confirmed"
+                        android:padding="5dp"
+                        android:textColor="@android:color/black"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/center_guideline"
+                        app:layout_constraintTop_toTopOf="@+id/statusLabel" />
+
+                    <!-- Referrer -->
+                    <TextView
+                        android:id="@+id/referrerLabel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="5dp"
+                        android:text="Referrer"
+                        android:textColor="@android:color/black"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/statusLabel" />
+
+                    <TextView
+                        android:id="@+id/referrer"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:hint="John Doe"
+                        android:padding="5dp"
+                        android:textColor="@android:color/black"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/center_guideline"
+                        app:layout_constraintTop_toTopOf="@+id/referrerLabel" />
+
+                    <!-- Manager -->
+                    <TextView
+                        android:id="@+id/managerLabel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="5dp"
+                        android:text="Manager"
+                        android:textColor="@android:color/black"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/referrerLabel" />
+
+                    <TextView
+                        android:id="@+id/manager"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:hint="Jane Smith"
+                        android:padding="5dp"
+                        android:textColor="@android:color/black"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/center_guideline"
+                        app:layout_constraintTop_toTopOf="@+id/managerLabel" />
+
+                    <!-- Advance Amount -->
+                    <TextView
+                        android:id="@+id/advanceAmountLabel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="5dp"
+                        android:text="Advance Amount"
+                        android:textColor="@android:color/black"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/managerLabel" />
+
+                    <TextView
+                        android:id="@+id/advanceAmount"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:hint="500"
+                        android:padding="5dp"
+                        android:textColor="@android:color/black"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/center_guideline"
+                        app:layout_constraintTop_toTopOf="@+id/advanceAmountLabel" />
+
+                    <!-- Total Amount -->
+                    <TextView
+                        android:id="@+id/totalAmountLabel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="5dp"
+                        android:text="Total Amount"
+                        android:textColor="@android:color/black"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/advanceAmountLabel" />
+
+                    <TextView
+                        android:id="@+id/totalAmount"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:hint="2000"
+                        android:padding="5dp"
+                        android:textColor="@android:color/black"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/center_guideline"
+                        app:layout_constraintTop_toTopOf="@+id/totalAmountLabel" />
+
+                    <!-- Damage Repair Cost -->
+                    <TextView
+                        android:id="@+id/damageRepairCostLabel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="5dp"
+                        android:text="Damage Repair Cost"
+                        android:textColor="@android:color/black"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/totalAmountLabel" />
+
+                    <TextView
+                        android:id="@+id/damageRepairCost"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:hint="100"
+                        android:padding="5dp"
+                        android:textColor="@android:color/black"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/center_guideline"
+                        app:layout_constraintTop_toTopOf="@+id/damageRepairCostLabel" />
+
+                    <!-- Delivery Charges -->
+                    <TextView
+                        android:id="@+id/deliveryChangesLabel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="5dp"
+                        android:text="Delivery Charges"
+                        android:textColor="@android:color/black"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/damageRepairCostLabel" />
+
+                    <TextView
+                        android:id="@+id/deliveryChanges"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:hint="50"
+                        android:padding="5dp"
+                        android:textColor="@android:color/black"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/center_guideline"
+                        app:layout_constraintTop_toTopOf="@+id/deliveryChangesLabel" />
+
+                    <!-- Cancellation Charges -->
+                    <TextView
+                        android:id="@+id/cancellationChargesLabel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="5dp"
+                        android:text="Cancellation Charges"
+                        android:textColor="@android:color/black"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/deliveryChangesLabel" />
+
+                    <TextView
+                        android:id="@+id/cancellationCharges"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:hint="20"
+                        android:padding="5dp"
+                        android:textColor="@android:color/black"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/center_guideline"
+                        app:layout_constraintTop_toTopOf="@+id/cancellationChargesLabel" />
+
+                    <!-- Net Income -->
+                    <TextView
+                        android:id="@+id/netIncomeLabel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="5dp"
+                        android:text="Net Income"
+                        android:textColor="@android:color/black"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/cancellationChargesLabel" />
+
+                    <TextView
+                        android:id="@+id/netIncome"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:hint="1850"
+                        android:padding="5dp"
+                        android:textColor="@android:color/black"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/center_guideline"
+                        app:layout_constraintTop_toTopOf="@+id/netIncomeLabel" />
+
+                    <!-- Participant Share -->
+                    <TextView
+                        android:id="@+id/participantShareLabel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="5dp"
+                        android:text="Participant Share"
+                        android:textColor="@android:color/black"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/netIncomeLabel" />
+
+                    <TextView
+                        android:id="@+id/participantShare"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:hint="900"
+                        android:padding="5dp"
+                        android:textColor="@android:color/black"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/center_guideline"
+                        app:layout_constraintTop_toTopOf="@+id/participantShareLabel" />
+
+                    <!-- Manager Share -->
+                    <TextView
+                        android:id="@+id/managerShareLabel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="5dp"
+                        android:text="Manager Share"
+                        android:textColor="@android:color/black"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/participantShareLabel" />
+
+                    <TextView
+                        android:id="@+id/managerShare"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:hint="500"
+                        android:padding="5dp"
+                        android:textColor="@android:color/black"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/center_guideline"
+                        app:layout_constraintTop_toTopOf="@+id/managerShareLabel" />
+
+                    <!-- Referrer Share -->
+                    <TextView
+                        android:id="@+id/referrerShareLabel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="5dp"
+                        android:text="Referrer Share"
+                        android:textColor="@android:color/black"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/managerShareLabel" />
+
+                    <TextView
+                        android:id="@+id/referrerShare"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:hint="450"
+                        android:padding="5dp"
+                        android:textColor="@android:color/black"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/center_guideline"
+                        app:layout_constraintTop_toTopOf="@+id/referrerShareLabel" />
+
+                    <!-- Customer Name -->
+                    <TextView
+                        android:id="@+id/customerNameLabel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="5dp"
+                        android:text="Customer Name"
+                        android:textColor="@android:color/black"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/referrerShare" />
+
+                    <TextView
+                        android:id="@+id/customer_name"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:hint="450"
+                        android:padding="5dp"
+                        android:textColor="@android:color/black"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/center_guideline"
+                        app:layout_constraintTop_toTopOf="@+id/customerNameLabel" />
+
+                    <!-- Referrer Share -->
+                    <TextView
+                        android:id="@+id/customerMobileLabel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="5dp"
+                        android:text="Customer Contact No."
+                        android:textColor="@android:color/black"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/customer_name" />
+
+                    <TextView
+                        android:id="@+id/customer_mobile"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:hint="450"
+                        android:padding="5dp"
+                        android:textColor="@android:color/black"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/center_guideline"
+                        app:layout_constraintTop_toTopOf="@+id/customerMobileLabel" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+    </ScrollView>
+
+    <!-- Fixed Buttons at the bottom -->
+    <LinearLayout
+        android:id="@+id/fixed_buttons"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/event_onclick"
+        android:orientation="horizontal"
+        android:padding="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <Button
+            android:id="@+id/edit_order"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:backgroundTint="@color/blue"
+            android:padding="10dp"
+            android:text="Edit"
+            android:textAllCaps="false"
+            android:textColor="@android:color/white" />
+
+        <Button
+            android:id="@+id/settle_order"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:backgroundTint="@color/green"
+            android:padding="10dp"
+            android:text="Settle"
+            android:textAllCaps="false"
+            android:textColor="@android:color/white" />
+
+        <Button
+            android:id="@+id/cancel_order"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:backgroundTint="@color/red"
+            android:padding="10dp"
+            android:text="Cancel"
+            android:textAllCaps="false"
+            android:textColor="@android:color/white" />
+
+        <Button
+            android:id="@+id/generate_bill"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:backgroundTint="@color/button_gradient_start"
+            android:padding="10dp"
+            android:text="Generate Bill"
+            android:visibility="gone"
+            android:textAllCaps="false"
+            android:textColor="@android:color/white" />
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

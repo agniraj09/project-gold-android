@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:gravity="center">
+
+    <!-- Row 1: New Order and View Orders -->
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <Button
+            android:id="@+id/newOrderButton"
+            android:layout_width="140dp"
+            android:layout_height="140dp"
+            android:text="@string/new_order_label"
+            android:textAllCaps="false"
+            android:gravity="center"
+            android:paddingTop="18dp"
+            android:textSize="14sp"
+            android:textStyle="normal"
+            android:elevation="4dp"
+            android:layout_marginEnd="16dp"
+            app:cornerRadius="12dp"
+            app:strokeWidth="2dp"
+            app:strokeColor="@color/white"
+            android:backgroundTint="#4CAF50"
+            android:drawableTop="@drawable/new_order"
+            android:textColor="@color/white" />
+
+        <Button
+            android:id="@+id/viewOrdersButton"
+            android:layout_width="140dp"
+            android:layout_height="140dp"
+            android:text="@string/view_orders_label"
+            android:textAllCaps="false"
+            android:gravity="center"
+            android:paddingTop="18dp"
+            android:layout_marginStart="10dp"
+            android:textSize="14sp"
+            android:textStyle="normal"
+            android:elevation="4dp"
+            app:cornerRadius="12dp"
+            app:strokeWidth="2dp"
+            app:strokeColor="@color/white"
+            android:backgroundTint="#FF5722"
+            android:drawableTop="@drawable/list"
+            android:textColor="@color/white" />
+    </LinearLayout>
+
+    <!-- Row 2: Revenue and Inventory -->
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginTop="16dp">
+
+        <Button
+            android:id="@+id/revenueButton"
+            android:layout_width="140dp"
+            android:layout_height="140dp"
+            android:text="@string/revenue_label"
+            android:textAllCaps="false"
+            android:gravity="center"
+            android:paddingTop="18dp"
+            android:textSize="14sp"
+            android:textStyle="normal"
+            android:elevation="4dp"
+            android:layout_marginEnd="16dp"
+            app:cornerRadius="12dp"
+            app:strokeWidth="2dp"
+            app:strokeColor="@color/white"
+            android:backgroundTint="#E91E63"
+            android:drawableTop="@drawable/revenue"
+            android:textColor="@color/white" />
+
+        <Button
+            android:id="@+id/inventoryButton"
+            android:layout_width="140dp"
+            android:layout_height="140dp"
+            android:text="@string/inventory_label"
+            android:textAllCaps="false"
+            android:gravity="center"
+            android:paddingTop="18dp"
+            android:layout_marginStart="10dp"
+            android:textSize="14sp"
+            android:textStyle="normal"
+            android:elevation="4dp"
+            app:cornerRadius="12dp"
+            app:strokeWidth="2dp"
+            app:strokeColor="@color/white"
+            android:backgroundTint="#8249E7"
+            android:drawableTop="@drawable/inventory"
+            android:textColor="@color/white" />
+    </LinearLayout>
+
+    <!-- Row 3: Coupon Code  -->
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginTop="16dp">
+
+        <Button
+            android:id="@+id/couponCodeButton"
+            android:layout_width="140dp"
+            android:layout_height="140dp"
+            android:text="Coupon Code"
+            android:textAllCaps="false"
+            android:gravity="center"
+            android:paddingTop="18dp"
+            android:textSize="14sp"
+            android:textStyle="normal"
+            android:elevation="4dp"
+            android:layout_marginEnd="16dp"
+            app:cornerRadius="12dp"
+            app:strokeWidth="2dp"
+            app:strokeColor="@color/white"
+            android:backgroundTint="#2196F3"
+            android:drawableTop="@drawable/coupon"
+            android:textColor="@color/white" />
+
+        <Button
+            android:id="@+id/dummy"
+            android:layout_width="140dp"
+            android:layout_height="140dp"
+            android:text="Dummy"
+            android:textAllCaps="false"
+            android:gravity="center"
+            android:paddingTop="18dp"
+            android:layout_marginStart="10dp"
+            android:textSize="14sp"
+            android:textStyle="normal"
+            android:elevation="4dp"
+            app:cornerRadius="12dp"
+            app:strokeWidth="2dp"
+            app:strokeColor="@color/white"
+            android:backgroundTint="#FB8C00"
+            android:drawableTop="@drawable/inventory"
+            android:textColor="@color/white" />
+    </LinearLayout>
+
+</LinearLayout>

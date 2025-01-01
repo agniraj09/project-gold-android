@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="yellow">#FFD600</color>
+    <color name="green">#4CAF50</color>
+    <color name="red">#F44336</color>
+    <color name="blue">#2196F3</color>
+    <color name="button_gradient_start">#4CAF50</color> <!-- Green shade -->
+    <color name="button_gradient_end">#2196F3</color> <!-- Blue shade -->
+    <color name="home_screen_menu_button">#3F51B5</color>
+    <color name="rev_label">#FF000000</color>
+    <color name="rev_value">#FF000000</color>
+    <color name="new_ord_label">#FF000000</color>
+
+    <color name="action_bar_color">#03A9F4</color> <!-- Orange color -->
+    <color name="action_bar_color_dark">#0293D5</color> <!-- Darker shade for status bar -->
+
+
+    <color name="labelColor">#757575</color> <!-- Material Gray -->
+    <color name="countColor">#6200EE</color> <!-- Material Purple -->
+    <color name="headerColor">#1E88E5</color> <!-- Material Blue -->
+
+
+    <color name="colorPrimary">#05109e</color>
+    <color name="colorPrimaryDark">#05109e</color>
+    <color name="colorAccent">#54a3f0</color>
+    <color name="colorAccentMild">#519CE4</color>
+    <color name="colorAccentDark">#05109e</color>
+    <color name="colorRedLike">#FF9800</color>
+    <color name="colorRedLikeBorder">#FF5722</color>
+    <color name="homescreenmenu">#ffffff</color>
+    <color name="labelcolor">#05109e</color>
+    <color name="gobook">#388C16</color>
+    <color name="resultText">#10104d</color>
+    <color name="resultTextBG">#edebf5ff</color>
+    <color name="resultTextBorder">#05109e</color>
+    <color name="createbutton">#af992a</color>
+    <color name="year">#999999</color>
+    <color name="title">#222222</color>
+    <color name="sortBar">#56dee4e9</color>
+    <color name="sortBarLine">#a1c6cbcf</color>
+    <color name="transparent">#00C6CBCF</color>
+    <color name="pressed">#498BCC</color>
+</resources>

@@ -1,0 +1,11 @@
+<resources>
+    <dimen name="fab_margin">16dp</dimen>
+    <dimen name="text_size_rev_total">15sp</dimen>
+    <dimen name="text_size_rev_individual">12sp</dimen>
+    <dimen name="text_size_rev_individual_val">13sp</dimen>
+    <dimen name="new_ord_label">15sp</dimen>
+    <dimen name="new_ord_val_margin_top">18sp</dimen>
+
+    <dimen name="new_ord_container_margin_bottom">12dp</dimen>
+    <dimen name="new_ord_hor_line_margin_bottom">18dp</dimen>
+</resources>

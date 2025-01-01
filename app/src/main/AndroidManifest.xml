@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+
+    <application
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/vivaha"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/vivaha"
+        android:supportsRtl="true"
+        android:usesCleartextTraffic="true"
+        tools:targetApi="31"
+        android:theme="@style/CustomActionBar">
+        <activity
+            android:name=".activity.HomeScreenActivity"
+            android:exported="true"
+            android:theme="@style/CustomActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".activity.NewOrderSubmissionActivity"
+            android:parentActivityName=".activity.HomeScreenActivity"
+            android:theme="@style/CustomActionBar"
+            android:windowSoftInputMode="adjustResize"
+            tools:ignore="LockedOrientationActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activity.HomeScreenActivity" />
+        </activity>
+        <activity
+            android:name=".activity.ViewOrdersActivity"
+            android:parentActivityName=".activity.HomeScreenActivity"
+            android:theme="@style/CustomActionBar"
+            android:windowSoftInputMode="adjustPan"
+            tools:ignore="LockedOrientationActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activity.HomeScreenActivity" />
+        </activity>
+        <activity
+            android:name=".activity.RevenueDetailsActivity"
+            android:parentActivityName=".activity.HomeScreenActivity"
+            android:theme="@style/CustomActionBar"
+            android:windowSoftInputMode="adjustPan"
+            tools:ignore="LockedOrientationActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activity.HomeScreenActivity" />
+        </activity>
+        <activity
+            android:name=".activity.CouponActivity"
+            android:parentActivityName=".activity.HomeScreenActivity"
+            android:theme="@style/CustomActionBar"
+            android:windowSoftInputMode="adjustPan"
+            tools:ignore="LockedOrientationActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activity.HomeScreenActivity" />
+        </activity>
+        <activity
+            android:name=".activity.OrderDetailActivity"
+            android:parentActivityName=".activity.ViewOrdersActivity"
+            android:theme="@style/CustomActionBar"
+            android:windowSoftInputMode="adjustPan"
+            tools:ignore="LockedOrientationActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activity.ViewOrdersActivity" />
+        </activity>
+        <activity
+            android:name=".activity.EditOrderActivity"
+            android:parentActivityName=".activity.OrderDetailActivity"
+            android:theme="@style/CustomActionBar"
+            android:windowSoftInputMode="adjustResize"
+            tools:ignore="LockedOrientationActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activity.OrderDetailActivity" />
+        </activity>
+
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.provider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
+
+    </application>
+
+</manifest>
