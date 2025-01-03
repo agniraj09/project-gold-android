@@ -2,6 +2,7 @@ package com.business.project.gold.domain;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.List;
 
 public class NewOrderRequest {
 
@@ -24,6 +25,17 @@ public class NewOrderRequest {
     private BigDecimal cancellationCharge;
 
     private CustomerDetailsDTO customerDetails;
+
+    private List<ArtifactGroup> artifactGroups;
+
+    public List<ArtifactGroup> getArtifactGroupList() {
+        return artifactGroups;
+    }
+
+    public NewOrderRequest setArtifactGroupList(List<ArtifactGroup> artifactGroups) {
+        this.artifactGroups = artifactGroups;
+        return this;
+    }
 
     public CustomerDetailsDTO getCustomerDetails() {
         return customerDetails;

@@ -2,6 +2,7 @@ package com.business.project.gold.domain;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.List;
 
 public record OrderDetailsWithUserDetailsDTO(
         Long id,
@@ -21,6 +22,8 @@ public record OrderDetailsWithUserDetailsDTO(
         BigDecimal managerShare,
         BigDecimal referrerShare,
 
-        CustomerDetailsDTO customer)
+        CustomerDetailsDTO customer,
+
+        List<ArtifactGroup> artifactGroups)
         implements Serializable {
 }

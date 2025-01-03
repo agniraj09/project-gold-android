@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.FileProvider;
 
 import com.business.project.gold.R;
@@ -26,7 +27,14 @@ public class CouponActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_coupon); // Make sure the XML file is named "activity_coupon.xml"
+        setContentView(R.layout.activity_coupon);
+
+        // Set up the toolbar as the action bar
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("Discount Coupon");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         String validityText = getIntent().getStringExtra("validity");
         String discount = getIntent().getStringExtra("discount");
         String couponCode = getIntent().getStringExtra("couponCode");

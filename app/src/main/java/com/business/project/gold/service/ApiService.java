@@ -1,5 +1,6 @@
 package com.business.project.gold.service;
 
+import com.business.project.gold.domain.ArtifactGroup;
 import com.business.project.gold.domain.CouponCodeDetailsDto;
 import com.business.project.gold.domain.CouponCodeRedeemResponse;
 import com.business.project.gold.domain.CumulativeRevenueDetails;
@@ -48,4 +49,7 @@ public interface ApiService {
 
     @GET("/coupon-code/redeem")
     Call<CouponCodeRedeemResponse> redeemCouponCode(@Query(value="couponCode") String couponCode);
+
+    @GET("/artifacts/available")
+    Call<List<ArtifactGroup>> getArtifactGroupsAndArtifacts(@Query(value="functionDate") String functionDate);
 }

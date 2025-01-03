@@ -19,11 +19,14 @@ import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
 
 import com.business.project.gold.R;
 import com.business.project.gold.config.RetrofitConfig;
+import com.business.project.gold.domain.ArtifactDTO;
+import com.business.project.gold.domain.ArtifactGroup;
 import com.business.project.gold.domain.OrderCancellationRequest;
 import com.business.project.gold.domain.OrderDetailsWithUserDetailsDTO;
 
@@ -31,6 +34,8 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.util.List;
+import java.util.StringJoiner;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -39,7 +44,7 @@ import retrofit2.Response;
 public class OrderDetailActivity extends AppCompatActivity {
 
     private TextView orderIdText, orderDate, functionDate, orderType, status, referrer, manager, advanceAmount, totalAmount, damageRepairCost, deliveryChanges, cancellationCharges,
-            netIncome, participantShare, managerShare, referrerShare, customerName, customerMobileNumber;;
+            netIncome, participantShare, managerShare, referrerShare, customerName, customerMobileNumber, artifactsBooked;
 
     Button editOrderButton, settleOrderButton, cancelOrderButton, generateBillButton;
 
@@ -47,10 +52,12 @@ public class OrderDetailActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_order_detail);
-        setTitle("Order Details");
-        if (getSupportActionBar() != null) {
-            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        }
+
+        // Set up the toolbar as the action bar
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("Order Details");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         assignElements();
         long orderId = getIntent().getLongExtra("orderId", 0);
@@ -248,6 +255,8 @@ public class OrderDetailActivity extends AppCompatActivity {
         referrerShare.setText(String.valueOf(order.referrerShare()));
         customerName.setText(order.customer().getCustomerName());
         customerMobileNumber.setText(order.customer().getMobileNumber());
+        artifactsBooked.setText(buildArtifactsBookedText(order.artifactGroups()));
+
 
         if ("CANCELLED".equalsIgnoreCase(order.status())) {
             orderIdText.setBackgroundColor(ContextCompat.getColor(this, R.color.red));
@@ -258,6 +267,18 @@ public class OrderDetailActivity extends AppCompatActivity {
             orderIdText.setTextColor(getColor(android.R.color.white));
             makeButtonsInvisible();
         }
+    }
+
+    private String buildArtifactsBookedText(List<ArtifactGroup> artifactGroups) {
+        StringBuilder builder = new StringBuilder();
+
+        for(ArtifactGroup group : artifactGroups){
+            builder.append(group.getArtifactGroup()).append("\n");
+            StringJoiner joiner = new StringJoiner(", ");
+            group.getArtifacts().forEach(artifact -> joiner.add(artifact.getArtifact()));
+            builder.append(joiner).append("\n\n");
+        }
+        return builder.toString();
     }
 
     private void makeButtonsInvisible() {
@@ -290,6 +311,7 @@ public class OrderDetailActivity extends AppCompatActivity {
         generateBillButton = findViewById(R.id.generate_bill);
         customerName = findViewById(R.id.customer_name);
         customerMobileNumber = findViewById(R.id.customer_mobile);
+        artifactsBooked = findViewById(R.id.artifactsBooked);
     }
 
     private void generateBill() {
@@ -335,8 +357,6 @@ public class OrderDetailActivity extends AppCompatActivity {
             var total = Long.parseLong(this.totalAmount.getText().toString()) + Long.parseLong(this.deliveryChanges.getText().toString());
             totalAmount.setText(String.valueOf(total));
         }
-
-
 
         // Call the method to generate and export the image
         return billLayout.findViewById(R.id.bill_card);

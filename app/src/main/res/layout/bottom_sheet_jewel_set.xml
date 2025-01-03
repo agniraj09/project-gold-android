@@ -1,0 +1,43 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Select Group"
+        android:layout_marginBottom="8dp" />
+
+    <Spinner
+        android:id="@+id/groupDropdown"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/SpinnerTextStyle"
+        android:layout_marginBottom="16dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Select Piece"
+        android:layout_marginBottom="8dp" />
+
+    <com.google.android.material.chip.ChipGroup
+        android:id="@+id/pieceChipGroup"
+        style="@style/Widget.Material3.Chip.Assist"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:orientation="horizontal" />
+
+
+    <Button
+        android:id="@+id/confirmSelectionButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Confirm"
+        android:backgroundTint="@color/blue"
+        android:textColor="@android:color/white" />
+</LinearLayout>

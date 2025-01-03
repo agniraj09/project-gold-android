@@ -21,6 +21,10 @@
     <color name="countColor">#6200EE</color> <!-- Material Purple -->
     <color name="headerColor">#1E88E5</color> <!-- Material Blue -->
 
+    <color name="chip_unselected">#FFFFFF</color> <!-- Unselected background color -->
+    <color name="chip_stroke">#888888</color> <!-- Stroke color -->
+    <color name="chip_text">#000000</color> <!-- Text color -->
+    <color name="chip_selected">#79A2C5</color>
 
     <color name="colorPrimary">#05109e</color>
     <color name="colorPrimaryDark">#05109e</color>

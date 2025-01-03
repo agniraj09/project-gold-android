@@ -2,32 +2,49 @@ package com.business.project.gold.activity;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import com.business.project.gold.R;
 import com.business.project.gold.config.RetrofitConfig;
+import com.business.project.gold.domain.ArtifactDTO;
+import com.business.project.gold.domain.ArtifactGroup;
 import com.business.project.gold.domain.CustomerDetailsDTO;
 import com.business.project.gold.domain.NewOrderRequest;
 import com.business.project.gold.domain.OrderDetailsWithUserDetailsDTO;
 import com.business.project.gold.domain.SpinnerItem;
 import com.business.project.gold.domain.UserDetails;
+import com.google.android.material.bottomsheet.BottomSheetBehavior;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
+import com.google.android.material.chip.Chip;
+import com.google.android.material.chip.ChipGroup;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -40,14 +57,27 @@ public class NewOrderSubmissionActivity extends AppCompatActivity {
 
     private EditText advanceAmount, totalAmount, damageRepairCost, deliveryCharges, customerName, customerMobileNumber;
 
+    private Button addJewelSetButton;
+
+    private LinearLayout setContainer;
+
+    private List<ArtifactGroup> selectedGroups = new ArrayList<>();
+
     private final DateTimeFormatter ddMMMyyyy = DateTimeFormatter.ofPattern("dd-MMM-yyyy", Locale.ENGLISH);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_order_submission);
-        setTitle("New Order");
+
+        // Set up the toolbar as the action bar
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("New Order");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         functionDateTextView = findViewById(R.id.functionDate);
+        setContainer = findViewById(R.id.setContainer);
         orderTypeSpinner = findViewById(R.id.orderType);
         referrerSpinner = findViewById(R.id.referrer);
         managerSpinner = findViewById(R.id.manager);
@@ -57,9 +87,12 @@ public class NewOrderSubmissionActivity extends AppCompatActivity {
         deliveryCharges = findViewById(R.id.deliveryCharges);
         customerName = findViewById(R.id.customer_name);
         customerMobileNumber = findViewById(R.id.customer_mobile);
+        addJewelSetButton = findViewById(R.id.addJewelSetButton);
 
         functionDateTextView.setText(ddMMMyyyy.format(LocalDate.now()));
         functionDateTextView.setOnClickListener(v -> showDatePickerDialog());
+
+        addJewelSetButton.setOnClickListener(v -> showBottomSheet());
 
         populateOrderTypeSpinner();
 
@@ -159,8 +192,8 @@ public class NewOrderSubmissionActivity extends AppCompatActivity {
 
     private boolean isFormValid() {
         return (!totalAmount.getText().toString().isBlank()
-        && !customerName.getText().toString().isBlank()
-        && !customerMobileNumber.getText().toString().isBlank());
+                && !customerName.getText().toString().isBlank()
+                && !customerMobileNumber.getText().toString().isBlank());
     }
 
     // Submit action method
@@ -176,7 +209,8 @@ public class NewOrderSubmissionActivity extends AppCompatActivity {
                 .setCancellationCharge(BigDecimal.ZERO)
                 .setManager(((SpinnerItem) managerSpinner.getSelectedItem()).getKey())
                 .setReferrer(((SpinnerItem) referrerSpinner.getSelectedItem()).getKey())
-                .setCustomerDetails(new CustomerDetailsDTO().setCustomerName(customerName.getText().toString()).setMobileNumber(customerMobileNumber.getText().toString()));
+                .setCustomerDetails(new CustomerDetailsDTO().setCustomerName(customerName.getText().toString()).setMobileNumber(customerMobileNumber.getText().toString()))
+                .setArtifactGroupList(selectedGroups);
 
         Call<OrderDetailsWithUserDetailsDTO> call = RetrofitConfig.getApiService().placeNewOrder(request);
 
@@ -203,6 +237,146 @@ public class NewOrderSubmissionActivity extends AppCompatActivity {
             }
         });
     }
+
+    private void showBottomSheet() {
+        BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(this);
+        View bottomSheetView = getLayoutInflater().inflate(R.layout.bottom_sheet_jewel_set, null);
+
+        Spinner groupDropdown = bottomSheetView.findViewById(R.id.groupDropdown);
+        ChipGroup pieceChipGroup = bottomSheetView.findViewById(R.id.pieceChipGroup);
+        Button confirmSelectionButton = bottomSheetView.findViewById(R.id.confirmSelectionButton);
+
+        Call<List<ArtifactGroup>> call = RetrofitConfig.getApiService().getArtifactGroupsAndArtifacts(LocalDate.parse(functionDateTextView.getText().toString(), ddMMMyyyy).toString());
+        call.enqueue(new Callback<>() {
+            @Override
+            public void onResponse(Call<List<ArtifactGroup>> call, Response<List<ArtifactGroup>> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    List<ArtifactGroup> artifactGroups = response.body();
+
+                    List<String> groupNames = new ArrayList<>();
+                    Map<String, List<ArtifactDTO>> artifactMap = new HashMap<>();
+
+                    for (ArtifactGroup group : artifactGroups) {
+                        groupNames.add(group.getArtifactGroup());
+                        artifactMap.put(group.getArtifactGroup(), group.getArtifacts());
+                    }
+
+                    ArrayAdapter<String> groupAdapter = new ArrayAdapter<>(NewOrderSubmissionActivity.this, android.R.layout.simple_spinner_item, groupNames);
+                    groupAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    groupDropdown.setAdapter(groupAdapter);
+
+                    groupDropdown.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                        @Override
+                        public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                            String selectedGroup = groupNames.get(position);
+                            List<ArtifactDTO> artifacts = artifactMap.getOrDefault(selectedGroup, new ArrayList<>());
+
+                            // Clear previous chips
+                            pieceChipGroup.removeAllViews();
+
+                            // Populate ChipGroup with artifact options
+                            for (ArtifactDTO artifact : artifacts) {
+                                Chip chip = new Chip(NewOrderSubmissionActivity.this);
+                                chip.setText(artifact.getArtifact());
+                                chip.setCheckable(true);
+                                chip.setTag(artifact.getArtifactId());
+                                pieceChipGroup.addView(chip);
+                            }
+                        }
+
+                        @Override
+                        public void onNothingSelected(AdapterView<?> parent) {
+                            pieceChipGroup.removeAllViews();
+                        }
+                    });
+                } else {
+                    Toast.makeText(NewOrderSubmissionActivity.this, "Failed to load artifact groups", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<ArtifactGroup>> call, Throwable t) {
+                Toast.makeText(NewOrderSubmissionActivity.this, "Error: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        confirmSelectionButton.setOnClickListener(v -> {
+            String selectedGroup = groupDropdown.getSelectedItem() != null ? groupDropdown.getSelectedItem().toString() : "None";
+            List<ArtifactDTO> selectedPieces = getSelectedArtifacts(pieceChipGroup); // Your method to fetch selected pieces from ChipGroup
+
+            if (selectedPieces.isEmpty()) {
+                // Show Toast if no chip is selected
+                Toast.makeText(NewOrderSubmissionActivity.this, "Please select at least one piece before proceeding.", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            // Call the method to add them to the layout
+            addSelectedGroupAndPieces(selectedGroup, selectedPieces);
+
+            bottomSheetDialog.dismiss();
+        });
+
+        bottomSheetDialog.setContentView(bottomSheetView);
+
+        bottomSheetDialog.show();
+    }
+
+    @NonNull
+    private static List<ArtifactDTO> getSelectedArtifacts(ChipGroup pieceChipGroup) {
+        List<ArtifactDTO> selectedArtifacts = new ArrayList<>();
+        for (int i = 0; i < pieceChipGroup.getChildCount(); i++) {
+            Chip chip = (Chip) pieceChipGroup.getChildAt(i);
+            if (chip.isChecked()) {
+                selectedArtifacts.add(new ArtifactDTO().setArtifactId(Long.parseLong(chip.getTag().toString())).setArtifact(chip.getText().toString()));
+            }
+        }
+        return selectedArtifacts;
+    }
+
+    public void addSelectedGroupAndPieces(String groupName, List<ArtifactDTO> selectedPieces) {
+        ArtifactGroup newGroup = new ArtifactGroup();
+        newGroup.setArtifactGroup(groupName);
+        newGroup.setArtifacts(new ArrayList<>());
+
+        // Inflate the layout for the item
+        LayoutInflater inflater = LayoutInflater.from(this);
+        View itemView = inflater.inflate(R.layout.artifact_group_layout, setContainer, false);
+
+        // Find views in the inflated layout
+        TextView groupText = itemView.findViewById(R.id.group_name);
+        ImageView deleteIcon = itemView.findViewById(R.id.delete_icon);
+        ChipGroup chipGroup = itemView.findViewById(R.id.pieces_chip_group);
+
+        // Set group name
+        groupText.setText(groupName);
+
+        // Populate the ChipGroup with the selected pieces
+        for (ArtifactDTO piece : selectedPieces) {
+            Chip chip = new Chip(this);
+            chip.setText(piece.getArtifact());
+            chip.setCloseIconVisible(false); // No close icon for individual chips
+            chipGroup.addView(chip);
+
+            // Add the artifact to the group's artifact list
+            newGroup.getArtifacts().add(new ArtifactDTO()
+                    .setArtifactId(piece.getArtifactId())
+                    .setArtifact(piece.getArtifact()));
+        }
+
+        // Set delete icon click listener to remove the item
+        deleteIcon.setOnClickListener(v -> {
+            // Remove the item from the parent layout
+            setContainer.removeView(itemView);
+            selectedGroups.removeIf(group -> group.getArtifactGroup().equalsIgnoreCase(newGroup.getArtifactGroup()));
+        });
+
+        // Add the item to the container
+        setContainer.addView(itemView);
+
+        // Add the new group to the selected groups list
+        selectedGroups.add(newGroup);
+    }
+
 
     private BigDecimal convertToBigDecimal(EditText editText) {
         var value = editText.getText().toString();

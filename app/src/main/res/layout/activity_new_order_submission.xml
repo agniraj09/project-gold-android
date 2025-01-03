@@ -1,300 +1,351 @@
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp">
+    android:orientation="vertical">
 
-    <LinearLayout
+    <!-- Toolbar (ActionBar) -->
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:background="?attr/colorPrimary"
+        app:titleTextColor="@color/white" />
 
-        <!-- Group 1: Function Date -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="16dp">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginBottom="@dimen/new_ord_container_margin_bottom"
-            >
+            android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/functionDate_label"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Function Date*" />
-
-            <TextView
-                android:id="@+id/functionDate"
-                android:layout_width="match_parent"
-                android:textColor="@color/new_ord_label"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/new_ord_val_margin_top"
-                android:textSize="18sp"/>
-        </LinearLayout>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="#14000000"
-            android:layout_marginBottom="@dimen/new_ord_hor_line_margin_bottom"/>
-
-        <!-- Group 2: Order Type -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginBottom="@dimen/new_ord_container_margin_bottom"
-            >
-
-            <TextView
-                android:id="@+id/orderType_label"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Order Type*" />
-
-            <Spinner
-                android:id="@+id/orderType"
+            <!-- Group 1: Function Date -->
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/new_ord_val_margin_top"/>
-        </LinearLayout>
+                android:layout_marginBottom="@dimen/new_ord_container_margin_bottom"
+                android:orientation="vertical">
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="#14000000"
-            android:layout_marginBottom="@dimen/new_ord_container_margin_bottom"/>
+                <TextView
+                    android:id="@+id/functionDate_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Function Date*" />
 
-        <!-- Group 3: Advance Amount -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginBottom="@dimen/new_ord_container_margin_bottom">
+                <TextView
+                    android:id="@+id/functionDate"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/new_ord_val_margin_top"
+                    android:textColor="@color/new_ord_label"
+                    android:textSize="18sp" />
+            </LinearLayout>
 
-            <TextView
-                android:id="@+id/advanceAmount_label"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Advance Amount" />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginBottom="@dimen/new_ord_hor_line_margin_bottom"
+                android:background="#14000000" />
 
-            <EditText
-                android:id="@+id/advanceAmount"
+            <!-- Group 2: Order Type -->
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Advance paid by customer"
-                android:textColor="@color/new_ord_label"
-                android:background="@android:color/transparent"
-                android:layout_marginTop="@dimen/new_ord_val_margin_top"
-                android:inputType="numberDecimal" />
-        </LinearLayout>
+                android:layout_marginBottom="@dimen/new_ord_container_margin_bottom"
+                android:orientation="vertical">
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="#14000000"
-            android:layout_marginBottom="@dimen/new_ord_hor_line_margin_bottom"/>
+                <TextView
+                    android:id="@+id/orderType_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Order Type*" />
 
-        <!-- Group 4: Total Amount -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginBottom="@dimen/new_ord_container_margin_bottom">
+                <Spinner
+                    android:id="@+id/orderType"
+                    style="@style/SpinnerTextStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/new_ord_val_margin_top" />
+            </LinearLayout>
 
-            <TextView
-                android:id="@+id/totalAmount_label"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Total Amount*" />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginBottom="@dimen/new_ord_container_margin_bottom"
+                android:background="#14000000" />
 
-            <EditText
-                android:id="@+id/totalAmount"
+            <!-- Group 3: Advance Amount -->
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Package amount agreed by customer"
-                android:textColor="@color/new_ord_label"
-                android:background="@android:color/transparent"
-                android:layout_marginTop="@dimen/new_ord_val_margin_top"
-                android:inputType="numberDecimal" />
-        </LinearLayout>
+                android:layout_marginBottom="@dimen/new_ord_container_margin_bottom"
+                android:orientation="vertical">
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="#14000000"
-            android:layout_marginBottom="@dimen/new_ord_hor_line_margin_bottom"/>
+                <TextView
+                    android:id="@+id/advanceAmount_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Advance Amount" />
 
-        <!-- Group 5: Damage Repair Cost -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginBottom="@dimen/new_ord_container_margin_bottom">
+                <EditText
+                    android:id="@+id/advanceAmount"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/new_ord_val_margin_top"
+                    android:background="@android:color/transparent"
+                    android:hint="Advance paid by customer"
+                    android:inputType="numberDecimal"
+                    android:textColor="@color/new_ord_label" />
+            </LinearLayout>
 
-            <TextView
-                android:id="@+id/damageRepairCost_label"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Damage Repair Cost" />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginBottom="@dimen/new_ord_hor_line_margin_bottom"
+                android:background="#14000000" />
 
-            <EditText
-                android:id="@+id/damageRepairCost"
+            <!-- Group 4: Total Amount -->
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Cost of damage repairs(if any)"
-                android:textColor="@color/new_ord_label"
-                android:background="@android:color/transparent"
-                android:layout_marginTop="@dimen/new_ord_val_margin_top"
-                android:inputType="numberDecimal" />
-        </LinearLayout>
+                android:layout_marginBottom="@dimen/new_ord_container_margin_bottom"
+                android:orientation="vertical">
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="#14000000"
-            android:layout_marginBottom="@dimen/new_ord_hor_line_margin_bottom"/>
+                <TextView
+                    android:id="@+id/totalAmount_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Total Amount*" />
 
-        <!-- Group 6: Delivery Charges -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginBottom="@dimen/new_ord_container_margin_bottom">
+                <EditText
+                    android:id="@+id/totalAmount"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/new_ord_val_margin_top"
+                    android:background="@android:color/transparent"
+                    android:hint="Package amount agreed by customer"
+                    android:inputType="numberDecimal"
+                    android:textColor="@color/new_ord_label" />
+            </LinearLayout>
 
-            <TextView
-                android:id="@+id/deliveryCharges_label"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Delivery Charges" />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginBottom="@dimen/new_ord_hor_line_margin_bottom"
+                android:background="#14000000" />
 
-            <EditText
-                android:id="@+id/deliveryCharges"
+            <!-- Group 5: Damage Repair Cost -->
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="@color/new_ord_label"
-                android:background="@android:color/transparent"
-                android:layout_marginTop="@dimen/new_ord_val_margin_top"
-                android:inputType="numberDecimal" />
-        </LinearLayout>
+                android:layout_marginBottom="@dimen/new_ord_container_margin_bottom"
+                android:orientation="vertical">
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="#14000000"
-            android:layout_marginBottom="@dimen/new_ord_hor_line_margin_bottom"/>
+                <TextView
+                    android:id="@+id/damageRepairCost_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Damage Repair Cost" />
 
-        <!-- Group 7: Referrer -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginBottom="@dimen/new_ord_container_margin_bottom">
+                <EditText
+                    android:id="@+id/damageRepairCost"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/new_ord_val_margin_top"
+                    android:background="@android:color/transparent"
+                    android:hint="Cost of damage repairs(if any)"
+                    android:inputType="numberDecimal"
+                    android:textColor="@color/new_ord_label" />
+            </LinearLayout>
 
-            <TextView
-                android:id="@+id/referrer_label"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Referrer" />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginBottom="@dimen/new_ord_hor_line_margin_bottom"
+                android:background="#14000000" />
 
-            <Spinner
-                android:id="@+id/referrer"
+            <!-- Group 6: Delivery Charges -->
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                style="@style/SpinnerTextStyle"
-                android:layout_marginTop="@dimen/new_ord_val_margin_top"/>
-        </LinearLayout>
+                android:layout_marginBottom="@dimen/new_ord_container_margin_bottom"
+                android:orientation="vertical">
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="#14000000"
-            android:layout_marginBottom="@dimen/new_ord_hor_line_margin_bottom"/>
+                <TextView
+                    android:id="@+id/deliveryCharges_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Delivery Charges" />
 
-        <!-- Group 8: Manager -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginBottom="@dimen/new_ord_container_margin_bottom">
+                <EditText
+                    android:id="@+id/deliveryCharges"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/new_ord_val_margin_top"
+                    android:background="@android:color/transparent"
+                    android:inputType="numberDecimal"
+                    android:textColor="@color/new_ord_label" />
+            </LinearLayout>
 
-            <TextView
-                android:id="@+id/manager_label"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Manager*" />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginBottom="@dimen/new_ord_hor_line_margin_bottom"
+                android:background="#14000000" />
 
-            <Spinner
-                android:id="@+id/manager"
+            <!-- Group 7: Referrer -->
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                style="@style/SpinnerTextStyle"
-                android:layout_marginTop="@dimen/new_ord_val_margin_top"/>
-        </LinearLayout>
+                android:layout_marginBottom="@dimen/new_ord_container_margin_bottom"
+                android:orientation="vertical">
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="#14000000"
-            android:layout_marginBottom="@dimen/new_ord_hor_line_margin_bottom"/>
+                <TextView
+                    android:id="@+id/referrer_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Referrer" />
 
-        <!-- Group 9: Customer name-->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginBottom="@dimen/new_ord_container_margin_bottom">
+                <Spinner
+                    android:id="@+id/referrer"
+                    style="@style/SpinnerTextStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/new_ord_val_margin_top" />
+            </LinearLayout>
 
-            <TextView
-                android:id="@+id/customer_name_label"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Customer Name*" />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginBottom="@dimen/new_ord_hor_line_margin_bottom"
+                android:background="#14000000" />
 
-            <EditText
-                android:id="@+id/customer_name"
+            <!-- Group 8: Manager -->
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="@color/new_ord_label"
-                android:background="@android:color/transparent"
-                android:layout_marginTop="@dimen/new_ord_val_margin_top" />
-        </LinearLayout>
+                android:layout_marginBottom="@dimen/new_ord_container_margin_bottom"
+                android:orientation="vertical">
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="#14000000"
-            android:layout_marginBottom="@dimen/new_ord_hor_line_margin_bottom"/>
+                <TextView
+                    android:id="@+id/manager_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Manager*" />
 
-        <!-- Group 9: Customer Mobile-->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginBottom="@dimen/new_ord_container_margin_bottom">
+                <Spinner
+                    android:id="@+id/manager"
+                    style="@style/SpinnerTextStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/new_ord_val_margin_top" />
+            </LinearLayout>
 
-            <TextView
-                android:id="@+id/customer_mobile_label"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Customer Mobile Number*" />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginBottom="@dimen/new_ord_hor_line_margin_bottom"
+                android:background="#14000000" />
 
-            <EditText
-                android:id="@+id/customer_mobile"
+            <!-- Group 9: Customer name-->
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="numberDecimal"
-                android:maxLength="10"
-                android:textColor="@color/new_ord_label"
-                android:background="@android:color/transparent"
-                android:layout_marginTop="@dimen/new_ord_val_margin_top"/>
+                android:layout_marginBottom="@dimen/new_ord_container_margin_bottom"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/customer_name_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Customer Name*" />
+
+                <EditText
+                    android:id="@+id/customer_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/new_ord_val_margin_top"
+                    android:background="@android:color/transparent"
+                    android:textColor="@color/new_ord_label" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginBottom="@dimen/new_ord_hor_line_margin_bottom"
+                android:background="#14000000" />
+
+            <!-- Group 9: Customer Mobile-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/new_ord_container_margin_bottom"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/customer_mobile_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Customer Mobile Number*" />
+
+                <EditText
+                    android:id="@+id/customer_mobile"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/new_ord_val_margin_top"
+                    android:background="@android:color/transparent"
+                    android:inputType="numberDecimal"
+                    android:maxLength="10"
+                    android:textColor="@color/new_ord_label" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginBottom="@dimen/new_ord_hor_line_margin_bottom"
+                    android:background="#14000000" />
+
+                <!-- Group: Jewel Set -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/jewelSet_label"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Jewel Set"/>
+
+                    <LinearLayout
+                        android:id="@+id/setContainer"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/new_ord_container_margin_bottom"
+                        android:orientation="vertical" />
+
+                    <Button
+                        android:id="@+id/addJewelSetButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="16dp"
+                        android:drawableLeft="@drawable/add"
+                        android:drawablePadding="8dp"
+                        android:text="Add"
+                        android:textColor="@android:color/white" />
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginBottom="@dimen/new_ord_hor_line_margin_bottom"
+                android:background="#14000000" />
+
         </LinearLayout>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="#14000000"
-            android:layout_marginBottom="@dimen/new_ord_hor_line_margin_bottom"/>
-
-    </LinearLayout>
-</ScrollView>
+    </ScrollView>
+</LinearLayout>

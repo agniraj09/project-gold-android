@@ -1,18 +1,27 @@
 <resources>
 
-    <style name="CustomActionBar" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="CustomActionBar" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <item name="colorPrimary">@color/action_bar_color</item>
         <item name="colorPrimaryDark">@color/action_bar_color_dark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorControlNormal">@color/white</item>
     </style>
 
-    <style name="CustomAlertDialogTheme" parent="Theme.AppCompat.Light.Dialog.Alert">
+    <style name="CustomAlertDialogTheme" parent="Theme.MaterialComponents.DayNight.Dialog.Alert">
         <item name="android:textColorPrimary">@color/black</item>
         <item name="android:background">@color/white</item>
     </style>
 
+
     <style name="SpinnerTextStyle" parent="@android:style/Widget.TextView.SpinnerItem">
         <item name="android:textColor">@color/black</item>
+        <item name="android:theme">@style/ThemeOverlay.MaterialComponents.Light</item>
+    </style>
+
+    <!-- Custom style for Chip when selected -->
+    <style name="CustomChipStyle" parent="Widget.MaterialComponents.Chip.Choice">
+        <item name="chipBackgroundColor">@color/chip_unselected</item>
+        <item name="chipStrokeColor">@color/chip_stroke</item>
     </style>
 
 
