@@ -67,6 +67,16 @@
                 android:value=".activity.HomeScreenActivity" />
         </activity>
         <activity
+            android:name=".activity.CollectionDetailsActivity"
+            android:parentActivityName=".activity.HomeScreenActivity"
+            android:theme="@style/CustomActionBar"
+            android:windowSoftInputMode="adjustPan"
+            tools:ignore="LockedOrientationActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activity.HomeScreenActivity" />
+        </activity>
+        <activity
             android:name=".activity.OrderDetailActivity"
             android:parentActivityName=".activity.ViewOrdersActivity"
             android:theme="@style/CustomActionBar"

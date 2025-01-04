@@ -25,7 +25,6 @@ import androidx.core.content.FileProvider;
 
 import com.business.project.gold.R;
 import com.business.project.gold.config.RetrofitConfig;
-import com.business.project.gold.domain.ArtifactDTO;
 import com.business.project.gold.domain.ArtifactGroup;
 import com.business.project.gold.domain.OrderCancellationRequest;
 import com.business.project.gold.domain.OrderDetailsWithUserDetailsDTO;
@@ -181,7 +180,7 @@ public class OrderDetailActivity extends AppCompatActivity {
         // Show popup
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         LayoutInflater inflater = LayoutInflater.from(context);
-        View popupView = inflater.inflate(R.layout.order_cancellation_dialog, null);
+        View popupView = inflater.inflate(R.layout.dialog_order_cancellation, null);
         builder.setView(popupView);
         builder.setTitle("Cancellation Details");
         AlertDialog dialog = builder.create();

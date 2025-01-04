@@ -164,7 +164,7 @@ public class EditOrderActivity extends AppCompatActivity {
 
         // Inflate the layout for the item
         LayoutInflater inflater = LayoutInflater.from(this);
-        View itemView = inflater.inflate(R.layout.artifact_group_layout, setContainer, false);
+        View itemView = inflater.inflate(R.layout.item_artifact_group, setContainer, false);
 
         // Find views in the inflated layout
         TextView groupText = itemView.findViewById(R.id.group_name);

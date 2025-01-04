@@ -1,5 +1,6 @@
 package com.business.project.gold.service;
 
+import com.business.project.gold.domain.ArtifactDetailsDTO;
 import com.business.project.gold.domain.ArtifactGroup;
 import com.business.project.gold.domain.CouponCodeDetailsDto;
 import com.business.project.gold.domain.CouponCodeRedeemResponse;
@@ -10,6 +11,8 @@ import com.business.project.gold.domain.OrderDetailsWithUserDetailsDTO;
 import com.business.project.gold.domain.UserDetails;
 
 import java.util.List;
+import java.util.Map;
+
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
@@ -50,6 +53,21 @@ public interface ApiService {
     @GET("/coupon-code/redeem")
     Call<CouponCodeRedeemResponse> redeemCouponCode(@Query(value="couponCode") String couponCode);
 
+    @GET("/artifacts/all")
+    Call<List<ArtifactDetailsDTO>> getAllArtifacts();
+
+    @GET("/artifacts/all-groups")
+    Call<List<String>> getAllGroups();
+
+    @GET("/artifacts/update")
+    Call<List<ArtifactDetailsDTO>> updateAllArtifacts(List<ArtifactDetailsDTO> request);
+
     @GET("/artifacts/available")
     Call<List<ArtifactGroup>> getArtifactGroupsAndArtifacts(@Query(value="functionDate") String functionDate);
+
+    @GET("/artifacts/check-availability")
+    Call<Map<String, String>> checkAvailability(@Query(value="functionDate") String functionDate, @Query(value="group") String group);
+
+    @POST("/artifacts/add")
+    Call<Void> addNewArtifact(@Body ArtifactGroup request);
 }

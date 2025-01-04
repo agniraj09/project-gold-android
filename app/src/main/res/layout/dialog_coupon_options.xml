@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="30dp">
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/generateCouponButton"
+        android:layout_width="240dp"
+        android:layout_height="100dp"
+        android:padding="20dp"
+        android:text="Generate Coupon"
+        android:textAllCaps="false"
+        android:gravity="start|center_vertical"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:elevation="4dp"
+        app:cornerRadius="12dp"
+        app:strokeWidth="2dp"
+        app:strokeColor="@color/white"
+        android:backgroundTint="#2196F3"
+        android:drawableLeft="@drawable/generate_coupon_icon"
+        android:textColor="@color/white"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginBottom="16dp" />
+
+    <!-- Check Availability Button -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/redeemCouponButton"
+        android:layout_width="240dp"
+        android:layout_height="100dp"
+        android:padding="20dp"
+        android:text="Redeem Coupon"
+        android:textAllCaps="false"
+        android:gravity="start|center_vertical"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:elevation="4dp"
+        app:cornerRadius="12dp"
+        app:strokeWidth="2dp"
+        app:strokeColor="@color/white"
+        android:backgroundTint="#43A047"
+        android:drawableLeft="@drawable/redeem_coupon_icon"
+        android:textColor="@color/white"
+        app:layout_constraintTop_toBottomOf="@id/generateCouponButton"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -24,7 +24,7 @@ public class InvestorRevenueAdapter extends RecyclerView.Adapter<InvestorRevenue
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         // Inflate the row layout
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.participant_card, parent, false);
+                .inflate(R.layout.card_participant, parent, false);
         return new ViewHolder(view);
     }
 

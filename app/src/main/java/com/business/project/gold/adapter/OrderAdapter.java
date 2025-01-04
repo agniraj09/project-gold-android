@@ -16,7 +16,6 @@ import com.business.project.gold.domain.OrderDetailsWithUserDetailsDTO;
 import com.business.project.gold.service.OrderCardClickListener;
 
 import java.util.List;
-import java.util.Locale;
 
 public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.OrderDetailsDTOViewHolder> {
     private List<OrderDetailsWithUserDetailsDTO> orders;
@@ -31,7 +30,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.OrderDetails
     @Override
     public OrderDetailsDTOViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.order_card, parent, false);
+                .inflate(R.layout.card_order, parent, false);
         return new OrderDetailsDTOViewHolder(view);
     }
 

@@ -300,6 +300,7 @@
                     android:inputType="numberDecimal"
                     android:maxLength="10"
                     android:textColor="@color/new_ord_label" />
+            </LinearLayout>
 
                 <View
                     android:layout_width="match_parent"
@@ -338,14 +339,13 @@
                         android:textColor="@android:color/white" />
 
                 </LinearLayout>
-            </LinearLayout>
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:layout_marginBottom="@dimen/new_ord_hor_line_margin_bottom"
                 android:background="#14000000" />
+            </LinearLayout>
 
-        </LinearLayout>
     </ScrollView>
 </LinearLayout>

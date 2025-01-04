@@ -2,7 +2,6 @@ package com.business.project.gold.activity;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -12,7 +11,6 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
@@ -32,7 +30,6 @@ import com.business.project.gold.domain.NewOrderRequest;
 import com.business.project.gold.domain.OrderDetailsWithUserDetailsDTO;
 import com.business.project.gold.domain.SpinnerItem;
 import com.business.project.gold.domain.UserDetails;
-import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
@@ -340,7 +337,7 @@ public class NewOrderSubmissionActivity extends AppCompatActivity {
 
         // Inflate the layout for the item
         LayoutInflater inflater = LayoutInflater.from(this);
-        View itemView = inflater.inflate(R.layout.artifact_group_layout, setContainer, false);
+        View itemView = inflater.inflate(R.layout.item_artifact_group, setContainer, false);
 
         // Find views in the inflated layout
         TextView groupText = itemView.findViewById(R.id.group_name);
