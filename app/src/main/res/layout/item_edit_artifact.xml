@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="horizontal"
+    android:padding="8dp"
+    android:gravity="center_vertical">
+
+    <!-- Editable Artifact Name -->
+    <EditText
+        android:id="@+id/artifact_name_input"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:hint="Artifact Name"
+        android:textSize="16sp"
+        android:padding="8dp"
+        android:background="@android:color/transparent"
+        android:imeOptions="actionDone" />
+
+    <!-- Availability Switch -->
+    <com.google.android.material.switchmaterial.SwitchMaterial
+        android:id="@+id/availability_switch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="Available"
+        android:textSize="14sp" />
+
+    <!-- Remove Button -->
+    <ImageButton
+        android:id="@+id/remove_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:src="@android:drawable/ic_menu_delete"
+        android:contentDescription="Remove Artifact"
+        app:tint="@android:color/holo_red_dark" />
+</LinearLayout>

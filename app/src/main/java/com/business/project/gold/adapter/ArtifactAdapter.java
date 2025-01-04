@@ -15,6 +15,7 @@ import com.business.project.gold.domain.ArtifactDetailsDTO;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -100,7 +101,9 @@ public class ArtifactAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
     // Grouping artifacts by their group name
     public static List<Object> prepareData(List<ArtifactDetailsDTO> artifactDetailsDTOs) {
-        Map<String, List<ArtifactDetailsDTO>> groupedData = new HashMap<>();
+        Map<String, List<ArtifactDetailsDTO>> groupedData = new LinkedHashMap<>();
+
+        artifactDetailsDTOs.sort((o1, o2) -> o1.getArtifactGroup().compareToIgnoreCase(o2.getArtifactGroup()));
 
         // Grouping the artifacts by artifactGroup
         for (ArtifactDetailsDTO item : artifactDetailsDTOs) {

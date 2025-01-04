@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -24,9 +25,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.business.project.gold.R;
 import com.business.project.gold.adapter.ArtifactAvailabilityAdapter;
+import com.business.project.gold.adapter.ArtifactEditAdapter;
 import com.business.project.gold.adapter.ArtifactNameAdapter;
 import com.business.project.gold.config.RetrofitConfig;
 import com.business.project.gold.domain.ArtifactDTO;
+import com.business.project.gold.domain.ArtifactDetailsDTO;
 import com.business.project.gold.domain.ArtifactGroup;
 import com.business.project.gold.domain.CouponCodeDetailsDto;
 import com.business.project.gold.domain.CouponCodeRedeemResponse;
@@ -122,45 +125,49 @@ public class HomeScreenActivity extends Activity {
 
     private void openEditArtifactBottomSheet() {
         BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(this);
-        View dialogView = LayoutInflater.from(this).inflate(R.layout.bottom_sheet_add_artifact, null);
+        View dialogView = LayoutInflater.from(this).inflate(R.layout.bottom_sheet_edit_artifact, null);
         bottomSheetDialog.setContentView(dialogView);
 
-        EditText groupNameInput = dialogView.findViewById(R.id.group_name_input);
+        Spinner groupSpinner = dialogView.findViewById(R.id.groupSpinner);
         RecyclerView artifactsRecyclerView = dialogView.findViewById(R.id.artifactsRecyclerView);
         Button addArtifactButton = dialogView.findViewById(R.id.addArtifactButton);
         Button submitButton = dialogView.findViewById(R.id.submitButton);
 
+        // Load Groups into Spinner
+        fetchGroups(groupSpinner);
+
         // Setup RecyclerView for dynamic artifact list
-        List<String> artifacts = new ArrayList<>();
-        ArtifactNameAdapter artifactAdapter = new ArtifactNameAdapter(artifacts);
+        List<ArtifactDetailsDTO> artifacts = new ArrayList<>();
+        ArtifactEditAdapter artifactAdapter = new ArtifactEditAdapter(artifacts);
         artifactsRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         artifactsRecyclerView.setAdapter(artifactAdapter);
 
-        // Add Artifact
+        // Group Selection Listener
+        groupSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String selectedGroup = (String) groupSpinner.getSelectedItem();
+                loadArtifactsForGroup(selectedGroup, artifacts, artifactAdapter);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
+
+        // Add Artifact Button
         addArtifactButton.setOnClickListener(v -> {
-            artifacts.add("");
+            artifacts.add(new ArtifactDetailsDTO(1,"","", "Available")); // Add a new artifact with default values
             artifactAdapter.notifyItemInserted(artifacts.size() - 1);
         });
 
         // Submit Button
         submitButton.setOnClickListener(v -> {
-            String selectedGroupName = groupNameInput.getText().toString();
-            List<String> enteredArtifacts = artifactAdapter.getArtifacts();
+            List<ArtifactDetailsDTO> updatedArtifacts = artifactAdapter.getArtifacts();
 
-            // Check if the group name is empty
-            if (selectedGroupName.trim().isEmpty()) {
-                Toast.makeText(this, "Group name cannot be empty", Toast.LENGTH_SHORT).show();
-                return;
-            }
-
-            // Check if there are any artifacts
-            if (enteredArtifacts.isEmpty()) {
-                Toast.makeText(this, "Please add at least one artifact", Toast.LENGTH_SHORT).show();
-                return;
-            }
-
-            // Validate each artifact name
-            boolean hasEmptyArtifact = enteredArtifacts.stream()
+            // Validate artifacts
+            boolean hasEmptyArtifact = updatedArtifacts.stream()
+                    .map(ArtifactDetailsDTO::getArtifact)
                     .map(String::trim)
                     .anyMatch(String::isEmpty);
             if (hasEmptyArtifact) {
@@ -168,10 +175,61 @@ public class HomeScreenActivity extends Activity {
                 return;
             }
 
-            submitArtifacts(selectedGroupName, enteredArtifacts, bottomSheetDialog);
+            // Make REST call with updated artifacts
+            submitUpdatedArtifacts(groupSpinner.getSelectedItem().toString(), updatedArtifacts, bottomSheetDialog);
         });
 
         bottomSheetDialog.show();
+    }
+
+    private void loadArtifactsForGroup(String selectedGroup, List<ArtifactDetailsDTO> artifacts, ArtifactEditAdapter adapter) {
+        // Show loading indicator if necessary
+        Call<List<ArtifactDetailsDTO>> call = RetrofitConfig.getApiService().getAllArtifactsForGroup(selectedGroup);
+
+        call.enqueue(new Callback<>() {
+            @Override
+            public void onResponse(Call<List<ArtifactDetailsDTO>> call, Response<List<ArtifactDetailsDTO>> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    // Clear the current list and update with the new data
+                    artifacts.clear();
+                    artifacts.addAll(response.body());
+                    adapter.notifyDataSetChanged();
+                } else {
+                    Toast.makeText(getApplicationContext(), "Failed to load artifacts", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<ArtifactDetailsDTO>> call, Throwable t) {
+                // Handle the failure
+                Toast.makeText(getApplicationContext(), "Error: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+
+    private void submitUpdatedArtifacts(String groupName, List<ArtifactDetailsDTO> artifacts, BottomSheetDialog dialog) {
+        ArtifactGroup artifactGroup = new ArtifactGroup().setArtifactGroup(groupName);
+        artifactGroup.setArtifacts(artifacts.stream().map(artifact -> new ArtifactDTO().setArtifact(artifact.getArtifact())
+                .setStatus(artifact.getStatus())).collect(Collectors.toList()));
+
+        Call<Void> call = RetrofitConfig.getApiService().updateArtifact(artifactGroup);
+        call.enqueue(new Callback<>() {
+            @Override
+            public void onResponse(@NonNull Call<Void> call, @NonNull Response<Void> response) {
+                if (response.isSuccessful()) {
+                    Toast.makeText(getApplicationContext(), "Artifacts updated successfully!", Toast.LENGTH_SHORT).show();
+                    dialog.dismiss();
+                } else {
+                    Toast.makeText(getApplicationContext(), "Failed to update artifacts", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<Void> call, @NonNull Throwable t) {
+                Toast.makeText(getApplicationContext(), "Error: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     private void openAddArtifactBottomSheet() {

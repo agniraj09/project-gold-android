@@ -4,6 +4,16 @@ public class ArtifactDTO {
 
     private Long artifactId;
     private String artifact;
+    private String status;
+
+    public String getStatus() {
+        return status;
+    }
+
+    public ArtifactDTO setStatus(String status) {
+        this.status = status;
+        return this;
+    }
 
     public Long getArtifactId() {
         return artifactId;

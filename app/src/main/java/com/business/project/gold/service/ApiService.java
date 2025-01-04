@@ -56,11 +56,11 @@ public interface ApiService {
     @GET("/artifacts/all")
     Call<List<ArtifactDetailsDTO>> getAllArtifacts();
 
+    @GET("/artifacts/all/group")
+    Call<List<ArtifactDetailsDTO>> getAllArtifactsForGroup(@Query(value="group") String group);
+
     @GET("/artifacts/all-groups")
     Call<List<String>> getAllGroups();
-
-    @GET("/artifacts/update")
-    Call<List<ArtifactDetailsDTO>> updateAllArtifacts(List<ArtifactDetailsDTO> request);
 
     @GET("/artifacts/available")
     Call<List<ArtifactGroup>> getArtifactGroupsAndArtifacts(@Query(value="functionDate") String functionDate);
@@ -70,4 +70,7 @@ public interface ApiService {
 
     @POST("/artifacts/add")
     Call<Void> addNewArtifact(@Body ArtifactGroup request);
+
+    @POST("/artifacts/update")
+    Call<Void> updateArtifact(@Body ArtifactGroup request);
 }
