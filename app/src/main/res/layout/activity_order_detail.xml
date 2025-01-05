@@ -539,7 +539,7 @@
                 android:layout_weight="0.3"
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp"
-                android:backgroundTint="@color/blue"
+                android:backgroundTint="@color/colorPrimary"
                 android:padding="10dp"
                 android:text="Edit"
                 android:textAllCaps="false"

@@ -8,7 +8,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Select Group"
+        android:text="Group"
         android:layout_marginBottom="8dp" />
 
     <Spinner
@@ -21,7 +21,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Select Piece"
+        android:text="Artifacts"
         android:layout_marginBottom="8dp" />
 
     <com.google.android.material.chip.ChipGroup
@@ -38,6 +38,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Confirm"
-        android:backgroundTint="@color/blue"
+        android:backgroundTint="@color/colorPrimary"
         android:textColor="@android:color/white" />
 </LinearLayout>

@@ -132,6 +132,7 @@ public class HomeScreenActivity extends Activity {
         RecyclerView artifactsRecyclerView = dialogView.findViewById(R.id.artifactsRecyclerView);
         Button addArtifactButton = dialogView.findViewById(R.id.addArtifactButton);
         Button submitButton = dialogView.findViewById(R.id.submitButton);
+        Button cancelButton = dialogView.findViewById(R.id.cancel_button);
 
         // Load Groups into Spinner
         fetchGroups(groupSpinner);
@@ -159,6 +160,10 @@ public class HomeScreenActivity extends Activity {
         addArtifactButton.setOnClickListener(v -> {
             artifacts.add(new ArtifactDetailsDTO(1,"","", "Available")); // Add a new artifact with default values
             artifactAdapter.notifyItemInserted(artifacts.size() - 1);
+        });
+
+        cancelButton.setOnClickListener(v -> {
+            bottomSheetDialog.dismiss();
         });
 
         // Submit Button
@@ -241,6 +246,7 @@ public class HomeScreenActivity extends Activity {
         RecyclerView artifactsRecyclerView = dialogView.findViewById(R.id.artifactsRecyclerView);
         Button addArtifactButton = dialogView.findViewById(R.id.addArtifactButton);
         Button submitButton = dialogView.findViewById(R.id.submitButton);
+        Button cancelButton = dialogView.findViewById(R.id.cancel_button);
 
         // Setup RecyclerView for dynamic artifact list
         List<String> artifacts = new ArrayList<>();
@@ -252,6 +258,10 @@ public class HomeScreenActivity extends Activity {
         addArtifactButton.setOnClickListener(v -> {
             artifacts.add("");
             artifactAdapter.notifyItemInserted(artifacts.size() - 1);
+        });
+
+        cancelButton.setOnClickListener(v -> {
+            bottomSheetDialog.dismiss();
         });
 
         // Submit Button

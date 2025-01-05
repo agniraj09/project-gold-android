@@ -13,21 +13,24 @@
     <color name="rev_value">#FF000000</color>
     <color name="new_ord_label">#FF000000</color>
 
-    <color name="action_bar_color">#03A9F4</color> <!-- Orange color -->
-    <color name="action_bar_color_dark">#0293D5</color> <!-- Darker shade for status bar -->
+    <color name="action_bar_color">#13357C</color> <!-- Orange color -->
+    <color name="action_bar_color_dark">#0C204B</color> <!-- Darker shade for status bar -->
 
 
     <color name="labelColor">#757575</color> <!-- Material Gray -->
     <color name="countColor">#6200EE</color> <!-- Material Purple -->
     <color name="headerColor">#1E88E5</color> <!-- Material Blue -->
 
+    <color name="main_icon_color">#13357C</color>
+    <color name="main_label_color">#13357C</color>
+
     <color name="chip_unselected">#FFFFFF</color> <!-- Unselected background color -->
     <color name="chip_stroke">#888888</color> <!-- Stroke color -->
     <color name="chip_text">#000000</color> <!-- Text color -->
     <color name="chip_selected">#79A2C5</color>
 
-    <color name="colorPrimary">#05109e</color>
-    <color name="colorPrimaryDark">#05109e</color>
+    <color name="colorPrimary">#13357C</color>
+    <color name="colorPrimaryDark">#0D2454</color>
     <color name="colorAccent">#54a3f0</color>
     <color name="colorAccentMild">#519CE4</color>
     <color name="colorAccentDark">#05109e</color>

@@ -35,7 +35,6 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:background="?attr/selectableItemBackgroundBorderless"
-        android:src="@android:drawable/ic_menu_delete"
-        android:contentDescription="Remove Artifact"
-        app:tint="@android:color/holo_red_dark" />
+        android:src="@android:drawable/ic_delete"
+        android:contentDescription="Remove Artifact" />
 </LinearLayout>

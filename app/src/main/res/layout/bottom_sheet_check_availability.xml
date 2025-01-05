@@ -42,9 +42,9 @@
         android:id="@+id/btnSubmit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Submit"
+        android:text="Check Availability"
         android:layout_marginTop="24dp"
-        android:backgroundTint="@color/blue"
+        android:backgroundTint="@color/colorPrimary"
         android:textColor="@android:color/white" />
 
     <!-- Results Section -->

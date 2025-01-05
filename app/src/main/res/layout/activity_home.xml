@@ -1,150 +1,190 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="16dp"
-    android:gravity="center">
+    android:gravity="center"
+    android:orientation="vertical">
 
-    <!-- Row 1: New Order and View Orders -->
+    <TextView
+        android:id="@+id/vivaha_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimaryDark"
+        android:padding="20dp"
+        android:text="Vivaha Bridal Jewellery"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <LinearLayout
+        android:id="@+id/menu"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center">
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/vivaha_name">
 
-        <Button
-            android:id="@+id/newOrderButton"
-            android:layout_width="140dp"
-            android:layout_height="140dp"
-            android:text="@string/new_order_label"
-            android:textAllCaps="false"
+        <!-- Row 1: New Order and View Orders -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:gravity="center"
-            android:paddingTop="18dp"
-            android:textSize="14sp"
-            android:textStyle="normal"
-            android:elevation="4dp"
-            android:layout_marginEnd="16dp"
-            app:cornerRadius="12dp"
-            app:strokeWidth="2dp"
-            app:strokeColor="@color/white"
-            android:backgroundTint="#4CAF50"
-            android:drawableTop="@drawable/new_order"
-            android:textColor="@color/white" />
+            android:orientation="horizontal">
 
-        <Button
-            android:id="@+id/viewOrdersButton"
-            android:layout_width="140dp"
-            android:layout_height="140dp"
-            android:text="@string/view_orders_label"
-            android:textAllCaps="false"
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/newOrderButton"
+                android:layout_width="140dp"
+                android:layout_height="140dp"
+                android:layout_marginEnd="16dp"
+                android:backgroundTint="@color/white"
+                android:drawableTop="@drawable/new_order"
+                android:elevation="4dp"
+                android:gravity="center"
+                android:paddingTop="18dp"
+                android:text="@string/new_order_label"
+                android:textAllCaps="false"
+                android:textColor="@color/main_label_color"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:cornerRadius="12dp"
+                app:strokeColor="@color/main_label_color"
+                app:strokeWidth="2dp" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/viewOrdersButton"
+                android:layout_width="140dp"
+                android:layout_height="140dp"
+                android:layout_marginStart="10dp"
+                android:backgroundTint="@color/white"
+                android:drawableTop="@drawable/list"
+                android:elevation="4dp"
+                android:gravity="center"
+                android:paddingTop="18dp"
+                android:text="@string/view_orders_label"
+                android:textAllCaps="false"
+                android:textColor="@color/main_label_color"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:cornerRadius="12dp"
+                app:strokeColor="@color/main_label_color"
+                app:strokeWidth="2dp" />
+        </LinearLayout>
+
+        <!-- Row 2: Revenue and Inventory -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
             android:gravity="center"
-            android:paddingTop="18dp"
-            android:layout_marginStart="10dp"
-            android:textSize="14sp"
-            android:textStyle="normal"
-            android:elevation="4dp"
-            app:cornerRadius="12dp"
-            app:strokeWidth="2dp"
-            app:strokeColor="@color/white"
-            android:backgroundTint="#FF5722"
-            android:drawableTop="@drawable/list"
-            android:textColor="@color/white" />
+            android:orientation="horizontal">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/revenueButton"
+                android:layout_width="140dp"
+                android:layout_height="140dp"
+                android:layout_marginEnd="16dp"
+                android:backgroundTint="@color/white"
+                android:drawableTop="@drawable/revenue"
+                android:elevation="4dp"
+                android:gravity="center"
+                android:paddingTop="18dp"
+                android:text="@string/revenue_label"
+                android:textAllCaps="false"
+                android:textColor="@color/main_label_color"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:cornerRadius="12dp"
+                app:strokeColor="@color/main_label_color"
+                app:strokeWidth="2dp" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/inventoryButton"
+                android:layout_width="140dp"
+                android:layout_height="140dp"
+                android:layout_marginStart="10dp"
+                android:backgroundTint="@color/white"
+                android:drawableTop="@drawable/inventory"
+                android:elevation="4dp"
+                android:gravity="center"
+                android:paddingTop="18dp"
+                android:text="@string/inventory_label"
+                android:textAllCaps="false"
+                android:textColor="@color/main_label_color"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:cornerRadius="12dp"
+                app:strokeColor="@color/main_label_color"
+                app:strokeWidth="2dp" />
+        </LinearLayout>
+
+        <!-- Row 3: Coupon Code  -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/couponCodeButton"
+                android:layout_width="140dp"
+                android:layout_height="140dp"
+                android:layout_marginEnd="16dp"
+                android:backgroundTint="@color/white"
+                android:drawableTop="@drawable/coupon"
+                android:elevation="4dp"
+                android:gravity="center"
+                android:paddingTop="18dp"
+                android:text="Coupon Code"
+                android:textAllCaps="false"
+                android:textColor="@color/main_label_color"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:cornerRadius="12dp"
+                app:strokeColor="@color/main_label_color"
+                app:strokeWidth="2dp" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/dummy"
+                android:layout_width="140dp"
+                android:layout_height="140dp"
+                android:layout_marginStart="10dp"
+                android:backgroundTint="@color/white"
+                android:drawableTop="@drawable/inventory"
+                android:elevation="4dp"
+                android:gravity="center"
+                android:paddingTop="18dp"
+                android:text="Dummy"
+                android:textAllCaps="false"
+                android:textColor="@color/main_label_color"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:cornerRadius="12dp"
+                app:strokeColor="@color/main_label_color"
+                app:strokeWidth="2dp" />
+        </LinearLayout>
     </LinearLayout>
 
-    <!-- Row 2: Revenue and Inventory -->
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center"
-        android:layout_marginTop="16dp">
-
-        <Button
-            android:id="@+id/revenueButton"
-            android:layout_width="140dp"
-            android:layout_height="140dp"
-            android:text="@string/revenue_label"
-            android:textAllCaps="false"
-            android:gravity="center"
-            android:paddingTop="18dp"
-            android:textSize="14sp"
-            android:textStyle="normal"
-            android:elevation="4dp"
-            android:layout_marginEnd="16dp"
-            app:cornerRadius="12dp"
-            app:strokeWidth="2dp"
-            app:strokeColor="@color/white"
-            android:backgroundTint="#E91E63"
-            android:drawableTop="@drawable/revenue"
-            android:textColor="@color/white" />
-
-        <Button
-            android:id="@+id/inventoryButton"
-            android:layout_width="140dp"
-            android:layout_height="140dp"
-            android:text="@string/inventory_label"
-            android:textAllCaps="false"
-            android:gravity="center"
-            android:paddingTop="18dp"
-            android:layout_marginStart="10dp"
-            android:textSize="14sp"
-            android:textStyle="normal"
-            android:elevation="4dp"
-            app:cornerRadius="12dp"
-            app:strokeWidth="2dp"
-            app:strokeColor="@color/white"
-            android:backgroundTint="#8249E7"
-            android:drawableTop="@drawable/inventory"
-            android:textColor="@color/white" />
-    </LinearLayout>
-
-    <!-- Row 3: Coupon Code  -->
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center"
-        android:layout_marginTop="16dp">
-
-        <Button
-            android:id="@+id/couponCodeButton"
-            android:layout_width="140dp"
-            android:layout_height="140dp"
-            android:text="Coupon Code"
-            android:textAllCaps="false"
-            android:gravity="center"
-            android:paddingTop="18dp"
-            android:textSize="14sp"
-            android:textStyle="normal"
-            android:elevation="4dp"
-            android:layout_marginEnd="16dp"
-            app:cornerRadius="12dp"
-            app:strokeWidth="2dp"
-            app:strokeColor="@color/white"
-            android:backgroundTint="#2196F3"
-            android:drawableTop="@drawable/coupon"
-            android:textColor="@color/white" />
-
-        <Button
-            android:id="@+id/dummy"
-            android:layout_width="140dp"
-            android:layout_height="140dp"
-            android:text="Dummy"
-            android:textAllCaps="false"
-            android:gravity="center"
-            android:paddingTop="18dp"
-            android:layout_marginStart="10dp"
-            android:textSize="14sp"
-            android:textStyle="normal"
-            android:elevation="4dp"
-            app:cornerRadius="12dp"
-            app:strokeWidth="2dp"
-            app:strokeColor="@color/white"
-            android:backgroundTint="#FB8C00"
-            android:drawableTop="@drawable/inventory"
-            android:textColor="@color/white" />
-    </LinearLayout>
-
-</LinearLayout>
+    <!-- &lt;!&ndash; Footer &ndash;&gt;
+     <TextView
+         android:id="@+id/note"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_gravity="center"
+         android:gravity="center"
+         android:text="Built by Tech Team-Vivaha"
+         android:textColor="@color/colorPrimary"
+         android:textSize="10sp"
+         android:paddingBottom="10dp"
+         app:layout_constraintBottom_toBottomOf="parent"
+         app:layout_constraintEnd_toEndOf="parent"
+         app:layout_constraintStart_toStartOf="parent" />
+ -->
+</androidx.constraintlayout.widget.ConstraintLayout>

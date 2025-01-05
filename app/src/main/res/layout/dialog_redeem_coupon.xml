@@ -38,10 +38,10 @@
         android:id="@+id/redeem_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Redeem"
+        android:text="Redeem Coupon"
         android:textSize="16sp"
         android:textColor="@android:color/white"
-        android:backgroundTint="@color/blue"
+        android:backgroundTint="@color/colorPrimary"
         android:elevation="4dp"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="16dp" />

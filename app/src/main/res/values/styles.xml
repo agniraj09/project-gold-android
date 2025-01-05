@@ -5,6 +5,8 @@
         <item name="colorPrimaryDark">@color/action_bar_color_dark</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="colorControlNormal">@color/white</item>
+
+        <item name="colorControlActivated">@color/colorPrimary</item> <!-- Selected color -->
     </style>
 
     <style name="CustomAlertDialogTheme" parent="Theme.MaterialComponents.DayNight.Dialog.Alert">

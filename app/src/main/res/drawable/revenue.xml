@@ -3,7 +3,7 @@
     android:height="50dp"
     android:viewportWidth="960"
     android:viewportHeight="960"
-    android:tint="@android:color/white"
+    android:tint="@color/main_icon_color"
     android:autoMirrored="true">
   <path
       android:fillColor="@android:color/white"

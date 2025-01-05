@@ -1,6 +1,7 @@
 package com.business.project.gold.adapter;
 
 import android.content.Context;
+import android.graphics.drawable.GradientDrawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -46,25 +47,24 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.OrderDetails
         holder.advanceAmount.setText(String.valueOf(order.advanceAmount()));
         holder.totalAmount.setText(String.valueOf(order.totalAmount()));
         holder.statusLabel.setText(order.status());
-        holder.statusLabel.setBackgroundColor(getColor(order.status(), holder));
+        setStatusBackgroundColor(holder, order.status());
         holder.itemView.setOnClickListener(v -> cardClickListener.onCardClick(order.id()));
+    }
+
+    private void setStatusBackgroundColor(OrderDetailsDTOViewHolder holder, String status) {
+        GradientDrawable background = (GradientDrawable) holder.statusLabel.getBackground();
+        if ("NEW".equalsIgnoreCase(status)) {
+            background.setColor(ContextCompat.getColor(holder.itemView.getContext(), R.color.colorPrimary));
+        } else if ("SETTLED".equalsIgnoreCase(status)) {
+            background.setColor(ContextCompat.getColor(holder.itemView.getContext(), R.color.green));
+        } else {
+            background.setColor(ContextCompat.getColor(holder.itemView.getContext(), R.color.red));
+        }
     }
 
     @Override
     public int getItemCount() {
         return orders.size();
-    }
-
-    private int getColor(String status, RecyclerView.ViewHolder holder) {
-        Context context = holder.itemView.getContext();
-        if ("NEW".equalsIgnoreCase(status)) {
-            return ContextCompat.getColor(context, R.color.blue);
-        } else if ("SETTLED".equalsIgnoreCase(status)) {
-            return ContextCompat.getColor(context, R.color.green);
-        } else {
-            return ContextCompat.getColor(context, R.color.red);
-        }
-
     }
 
     public static class OrderDetailsDTOViewHolder extends RecyclerView.ViewHolder {
