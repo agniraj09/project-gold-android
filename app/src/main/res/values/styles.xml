@@ -2,7 +2,7 @@
 
     <style name="CustomActionBar" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <item name="colorPrimary">@color/action_bar_color</item>
-        <item name="colorPrimaryDark">@color/action_bar_color_dark</item>
+        <item name="colorPrimaryDark">@color/action_bar_color</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="colorControlNormal">@color/white</item>
 

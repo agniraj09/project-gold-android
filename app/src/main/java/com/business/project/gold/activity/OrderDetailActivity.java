@@ -62,11 +62,12 @@ public class OrderDetailActivity extends AppCompatActivity {
         long orderId = getIntent().getLongExtra("orderId", 0);
         boolean fromNewOrderPage = getIntent().getBooleanExtra("fromNewOrderPage", false);
         boolean fromViewOrdersPage = getIntent().getBooleanExtra("fromViewOrdersPage", false);
+        boolean fromTimelinePage = getIntent().getBooleanExtra("fromTimelinePage", false);
 
         getOrderDetailsAndPopulateLayouts(orderId);
         handleOrderCancellationOnClick();
         handleOrderSettlementOnClick();
-        handleEditOrderOnClick(fromNewOrderPage, fromViewOrdersPage);
+        handleEditOrderOnClick(fromNewOrderPage, fromViewOrdersPage, fromTimelinePage);
         handleGenerateBillOnClick();
 
         // Register a callback for back press
@@ -83,6 +84,11 @@ public class OrderDetailActivity extends AppCompatActivity {
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
                     startActivity(intent);
                     finish();
+                } else if (fromTimelinePage) {
+                    Intent intent = new Intent(OrderDetailActivity.this, CalendarActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                    startActivity(intent);
+                    finish();
                 } else {
                     finish();
                 }
@@ -96,12 +102,13 @@ public class OrderDetailActivity extends AppCompatActivity {
         generateBillButton.setOnClickListener(v -> generateBill());
     }
 
-    private void handleEditOrderOnClick(boolean fromNewOrderPage, boolean fromViewOrdersPage) {
+    private void handleEditOrderOnClick(boolean fromNewOrderPage, boolean fromViewOrdersPage, boolean fromTimelinePage) {
         editOrderButton.setOnClickListener(v -> {
             Intent intent = new Intent(OrderDetailActivity.this, EditOrderActivity.class);
             intent.putExtra("orderId", Long.parseLong(orderIdText.getText().toString()));
             intent.putExtra("fromNewOrderPage", fromNewOrderPage);
             intent.putExtra("fromViewOrdersPage", fromViewOrdersPage);
+            intent.putExtra("fromTimelinePage", fromTimelinePage);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(intent);
         });
@@ -271,7 +278,7 @@ public class OrderDetailActivity extends AppCompatActivity {
     private String buildArtifactsBookedText(List<ArtifactGroup> artifactGroups) {
         StringBuilder builder = new StringBuilder();
 
-        for(ArtifactGroup group : artifactGroups){
+        for (ArtifactGroup group : artifactGroups) {
             builder.append(group.getArtifactGroup()).append("\n");
             StringJoiner joiner = new StringJoiner(", ");
             group.getArtifacts().forEach(artifact -> joiner.add(artifact.getArtifact()));
@@ -401,6 +408,7 @@ public class OrderDetailActivity extends AppCompatActivity {
     public boolean onSupportNavigateUp() {
         boolean fromNewOrderPage = getIntent().getBooleanExtra("fromNewOrderPage", false);
         boolean fromViewOrdersPage = getIntent().getBooleanExtra("fromViewOrdersPage", false);
+        boolean fromTimelinePage = getIntent().getBooleanExtra("fromTimelinePage", false);
         if (fromNewOrderPage) {
             Intent intent = new Intent(OrderDetailActivity.this, HomeScreenActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -412,11 +420,14 @@ public class OrderDetailActivity extends AppCompatActivity {
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);
             finish();
+        } else if (fromTimelinePage) {
+            Intent intent = new Intent(OrderDetailActivity.this, CalendarActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+            finish();
         }
         return super.onSupportNavigateUp();
     }
-
-
 
 
 }

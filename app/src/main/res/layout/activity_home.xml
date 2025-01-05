@@ -10,7 +10,7 @@
         android:id="@+id/vivaha_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/colorPrimaryDark"
+        android:background="@color/colorPrimary"
         android:padding="20dp"
         android:text="Vivaha Bridal Jewellery"
         android:textAlignment="center"

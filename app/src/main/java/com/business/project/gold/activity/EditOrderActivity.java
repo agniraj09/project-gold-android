@@ -61,8 +61,7 @@ public class EditOrderActivity extends AppCompatActivity {
 
     private final DateTimeFormatter ddMMMyyyy = DateTimeFormatter.ofPattern("dd-MMM-yyyy", Locale.ENGLISH);
 
-    private boolean fromNewOrderPage;
-    private boolean fromViewOrdersPage;
+    private boolean fromNewOrderPage, fromViewOrdersPage, fromTimelinePage;
 
     private List<ArtifactGroup> selectedGroups = new ArrayList<>();
 
@@ -96,6 +95,7 @@ public class EditOrderActivity extends AppCompatActivity {
 
         fromNewOrderPage = getIntent().getBooleanExtra("fromNewOrderPage", false);
         fromViewOrdersPage = getIntent().getBooleanExtra("fromViewOrdersPage", false);
+        fromTimelinePage = getIntent().getBooleanExtra("fromTimelinePage", false);
 
         // Populate spinners
         populateOrderTypeSpinner();
@@ -324,6 +324,7 @@ public class EditOrderActivity extends AppCompatActivity {
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     intent.putExtra("fromNewOrderPage", fromNewOrderPage);
                     intent.putExtra("fromViewOrdersPage", fromViewOrdersPage);
+                    intent.putExtra("fromTimelinePage", fromTimelinePage);
                     startActivity(intent);
                     Toast.makeText(getApplicationContext(), "Order updated successfully", Toast.LENGTH_LONG).show();
                 } else {
