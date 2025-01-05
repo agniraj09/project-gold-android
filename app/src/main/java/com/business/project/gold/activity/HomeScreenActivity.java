@@ -61,6 +61,7 @@ public class HomeScreenActivity extends Activity {
         Button revenueButton = findViewById(R.id.revenueButton);
         Button inventoryButton = findViewById(R.id.inventoryButton);
         Button couponCodeButton = findViewById(R.id.couponCodeButton);
+        Button timelinebutton = findViewById(R.id.calendar_view_button);
 
         // Set click listeners for each button
         newOrderButton.setOnClickListener(v -> {
@@ -75,6 +76,11 @@ public class HomeScreenActivity extends Activity {
 
         revenueButton.setOnClickListener(v -> {
             Intent intent = new Intent(HomeScreenActivity.this, RevenueDetailsActivity.class);
+            startActivity(intent);
+        });
+
+        timelinebutton.setOnClickListener(v ->{
+            Intent intent = new Intent(HomeScreenActivity.this, CalendarActivity.class);
             startActivity(intent);
         });
 

@@ -152,16 +152,16 @@
                 app:strokeWidth="2dp" />
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/dummy"
+                android:id="@+id/calendar_view_button"
                 android:layout_width="140dp"
                 android:layout_height="140dp"
                 android:layout_marginStart="10dp"
                 android:backgroundTint="@color/white"
-                android:drawableTop="@drawable/inventory"
+                android:drawableTop="@drawable/icon_calendar"
                 android:elevation="4dp"
                 android:gravity="center"
                 android:paddingTop="18dp"
-                android:text="Dummy"
+                android:text="Timeline"
                 android:textAllCaps="false"
                 android:textColor="@color/main_label_color"
                 android:textSize="14sp"

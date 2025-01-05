@@ -8,6 +8,7 @@ import com.business.project.gold.domain.CumulativeRevenueDetails;
 import com.business.project.gold.domain.NewOrderRequest;
 import com.business.project.gold.domain.OrderCancellationRequest;
 import com.business.project.gold.domain.OrderDetailsWithUserDetailsDTO;
+import com.business.project.gold.domain.OrderIDAndDate;
 import com.business.project.gold.domain.UserDetails;
 
 import java.util.List;
@@ -34,6 +35,9 @@ public interface ApiService {
 
     @GET("/order/all")
     Call<List<OrderDetailsWithUserDetailsDTO>> getAllOrders();
+
+    @GET("/order/all/lite")
+    Call<List<OrderIDAndDate>> getAllOrdersWithOrderIDAndDate();
 
     @POST("/order/cancel")
     Call<OrderDetailsWithUserDetailsDTO> cancelOrder(@Body OrderCancellationRequest request);
