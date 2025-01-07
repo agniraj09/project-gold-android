@@ -319,7 +319,7 @@
                         android:id="@+id/jewelSet_label"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Jewel Set"/>
+                        android:text="Jewel Set*"/>
 
                     <LinearLayout
                         android:id="@+id/setContainer"

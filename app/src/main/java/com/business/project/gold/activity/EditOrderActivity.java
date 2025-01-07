@@ -295,7 +295,8 @@ public class EditOrderActivity extends AppCompatActivity {
     private boolean isFormValid() {
         return (!totalAmount.getText().toString().isBlank()
                 && !customerName.getText().toString().isBlank()
-                && !customerMobileNumber.getText().toString().isBlank());
+                && !customerMobileNumber.getText().toString().isBlank()
+                && setContainer.getChildCount() > 0);
     }
 
     private void submitData() {

@@ -54,7 +54,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.OrderDetails
     private void setStatusBackgroundColor(OrderDetailsDTOViewHolder holder, String status) {
         GradientDrawable background = (GradientDrawable) holder.statusLabel.getBackground();
         if ("NEW".equalsIgnoreCase(status)) {
-            background.setColor(ContextCompat.getColor(holder.itemView.getContext(), R.color.colorPrimary));
+            background.setColor(ContextCompat.getColor(holder.itemView.getContext(), R.color.blue));
         } else if ("SETTLED".equalsIgnoreCase(status)) {
             background.setColor(ContextCompat.getColor(holder.itemView.getContext(), R.color.green));
         } else {

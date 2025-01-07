@@ -191,7 +191,8 @@ public class NewOrderSubmissionActivity extends AppCompatActivity {
     private boolean isFormValid() {
         return (!totalAmount.getText().toString().isBlank()
                 && !customerName.getText().toString().isBlank()
-                && !customerMobileNumber.getText().toString().isBlank());
+                && !customerMobileNumber.getText().toString().isBlank()
+                && setContainer.getChildCount() > 0);
     }
 
     // Submit action method
