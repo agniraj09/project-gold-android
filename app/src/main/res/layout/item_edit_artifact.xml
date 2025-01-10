@@ -29,12 +29,10 @@
         android:textSize="14sp" />
 
     <!-- Remove Button -->
-    <ImageButton
+    <View
         android:id="@+id/remove_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:background="?attr/selectableItemBackgroundBorderless"
-        android:src="@android:drawable/ic_delete"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:background="@android:drawable/ic_delete"
         android:contentDescription="Remove Artifact" />
 </LinearLayout>

@@ -1,0 +1,46 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:src="@mipmap/vivaha" />
+
+    <!-- Welcome Message -->
+    <TextView
+        android:id="@+id/textViewWelcome"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Welcome"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="24sp"
+        android:visibility="gone" />
+
+    <!-- User Input -->
+    <EditText
+        android:id="@+id/editTextUserID"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:hint="Enter User ID"
+        android:inputType="text"
+        android:paddingHorizontal="50dp"
+        android:maxLength="25"
+        android:textAlignment="center" />
+
+    <!-- Submit Button -->
+    <Button
+        android:id="@+id/buttonFetchRole"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="60dp"
+        android:paddingVertical="15dp"
+        android:text="Login" />
+</LinearLayout>

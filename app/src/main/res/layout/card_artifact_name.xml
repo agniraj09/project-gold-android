@@ -14,11 +14,10 @@
         android:hint="Artifact Name"
         android:textSize="14sp" />
 
-    <ImageButton
+    <View
         android:id="@+id/removeButton"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:src="@android:drawable/ic_delete"
-        android:background="?attr/selectableItemBackground"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:background="@android:drawable/ic_delete"
         android:contentDescription="Remove" />
 </LinearLayout>

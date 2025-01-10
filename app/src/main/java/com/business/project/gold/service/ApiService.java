@@ -24,6 +24,9 @@ public interface ApiService {
     @GET("/user/all")
     Call<List<UserDetails>> getUsers();
 
+    @GET("/user/single")
+    Call<UserDetails> getAUser(@Query(value = "username") String username);
+
     @POST("/order/new")
     Call<OrderDetailsWithUserDetailsDTO> placeNewOrder(@Body NewOrderRequest request);
 

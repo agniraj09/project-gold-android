@@ -28,7 +28,7 @@ public class ArtifactEditAdapter extends RecyclerView.Adapter<ArtifactEditAdapte
     public static class ViewHolder extends RecyclerView.ViewHolder {
         EditText artifactName;
         SwitchMaterial availabilitySwitch;
-        ImageButton removeButton;
+        View removeButton;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -72,11 +72,21 @@ public class ArtifactEditAdapter extends RecyclerView.Adapter<ArtifactEditAdapte
 
         holder.availabilitySwitch.setOnCheckedChangeListener((buttonView, isChecked) -> artifact.setStatus(isChecked ? "Available" : "Unavailable"));
 
-        // Remove artifact
         holder.removeButton.setOnClickListener(v -> {
-            int adapterPosition = holder.getAdapterPosition();
-            artifacts.remove(adapterPosition);
-            notifyItemRemoved(adapterPosition);
+            int positionToRemove = holder.getAdapterPosition();
+            if (positionToRemove != RecyclerView.NO_POSITION) {
+                artifacts.remove(positionToRemove);
+
+                // Check if the list is empty after the removal
+                if (artifacts.isEmpty()) {
+                    // Notify that the entire dataset has changed
+                    notifyDataSetChanged();
+                } else {
+                    // Otherwise, just notify about the item removal
+                    notifyItemRemoved(positionToRemove);
+                    notifyItemRangeChanged(positionToRemove, getItemCount());
+                }
+            }
         });
     }
 

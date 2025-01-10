@@ -348,7 +348,7 @@ public class OrderDetailActivity extends AppCompatActivity {
 
         // Assign values dynamically
         orderId.setText(this.orderIdText.getText().toString());
-        invoiceDate.setText(this.customerName.getText().toString());
+        invoiceDate.setText(this.functionDate.getText().toString());
         customerName.setText(this.customerName.getText().toString());
         customerMobile.setText(this.customerMobileNumber.getText().toString());
         manager.setText(this.manager.getText().toString());

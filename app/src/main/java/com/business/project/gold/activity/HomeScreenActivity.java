@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -12,6 +13,8 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
@@ -19,7 +22,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.core.content.ContextCompat;
+import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -34,6 +39,7 @@ import com.business.project.gold.domain.ArtifactGroup;
 import com.business.project.gold.domain.CouponCodeDetailsDto;
 import com.business.project.gold.domain.CouponCodeRedeemResponse;
 import com.business.project.gold.utils.NetworkUtils;
+import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.gson.Gson;
 
@@ -130,9 +136,15 @@ public class HomeScreenActivity extends Activity {
     }
 
     private void openEditArtifactBottomSheet() {
-        BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(this);
+        BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(this, R.style.DialogStyle);
         View dialogView = LayoutInflater.from(this).inflate(R.layout.bottom_sheet_edit_artifact, null);
         bottomSheetDialog.setContentView(dialogView);
+
+        // Get the BottomSheetBehavior to manage the sheet's state
+        BottomSheetBehavior<?> behavior = BottomSheetBehavior.from((View) dialogView.getParent());
+        behavior.setState(BottomSheetBehavior.STATE_EXPANDED);  // Make the bottom sheet expanded by default
+        behavior.setFitToContents(true);  // Adjusts the height to fit the contents
+        behavior.setSkipCollapsed(true); // Skip collapsed state to always show the sheet fully
 
         Spinner groupSpinner = dialogView.findViewById(R.id.groupSpinner);
         RecyclerView artifactsRecyclerView = dialogView.findViewById(R.id.artifactsRecyclerView);
@@ -244,9 +256,16 @@ public class HomeScreenActivity extends Activity {
     }
 
     private void openAddArtifactBottomSheet() {
-        BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(this);
+        BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(this, R.style.DialogStyle);
         View dialogView = LayoutInflater.from(this).inflate(R.layout.bottom_sheet_add_artifact, null);
+
         bottomSheetDialog.setContentView(dialogView);
+
+        // Get the BottomSheetBehavior to manage the sheet's state
+        BottomSheetBehavior<?> behavior = BottomSheetBehavior.from((View) dialogView.getParent());
+        behavior.setState(BottomSheetBehavior.STATE_EXPANDED);  // Make the bottom sheet expanded by default
+        behavior.setFitToContents(true);  // Adjusts the height to fit the contents
+        behavior.setSkipCollapsed(true); // Skip collapsed state to always show the sheet fully
 
         EditText groupNameInput = dialogView.findViewById(R.id.group_name_input);
         RecyclerView artifactsRecyclerView = dialogView.findViewById(R.id.artifactsRecyclerView);
@@ -301,6 +320,7 @@ public class HomeScreenActivity extends Activity {
 
         bottomSheetDialog.show();
     }
+
 
     // Submit artifacts to API
     private void submitArtifacts(String groupName, List<String> artifacts, BottomSheetDialog dialog) {
@@ -536,6 +556,8 @@ public class HomeScreenActivity extends Activity {
         // Initialize views
         EditText etCouponCode = dialogView.findViewById(R.id.coupon_code_input);
         Button btnRedeem = dialogView.findViewById(R.id.redeem_button);
+        ProgressBar progressBar = dialogView.findViewById(R.id.redeem_progress_bar);
+        ImageView successIcon = dialogView.findViewById(R.id.success_icon);
         TextView tvResult = dialogView.findViewById(R.id.validation_result);
 
         // Create the AlertDialog
@@ -554,23 +576,29 @@ public class HomeScreenActivity extends Activity {
             }
 
             // Make API call to redeem the coupon
-            redeemCoupon(couponCode, tvResult, redeemDialog);
+            redeemCoupon(couponCode,progressBar, successIcon, tvResult,btnRedeem, redeemDialog);
         });
 
         redeemDialog.show();
     }
 
-    private void redeemCoupon(String couponCode, TextView tvResult, AlertDialog dialog) {
+    private void redeemCoupon(String couponCode, ProgressBar progressBar, ImageView successIcon, TextView tvResult, Button btnRedeem, AlertDialog dialog) {
+        progressBar.setVisibility(View.VISIBLE);
+
         Call<CouponCodeRedeemResponse> call = RetrofitConfig.getApiService().redeemCouponCode(couponCode);
         call.enqueue(new Callback<>() {
             @Override
             public void onResponse(@NonNull Call<CouponCodeRedeemResponse> call, @NonNull Response<CouponCodeRedeemResponse> response) {
+                progressBar.setVisibility(View.GONE);
                 tvResult.setVisibility(View.VISIBLE);
 
                 if (response.isSuccessful()) {
+                    btnRedeem.setVisibility(View.GONE);
+                    successIcon.setVisibility(View.VISIBLE);
                     tvResult.setText(response.body().message());
                     tvResult.setTextColor(ContextCompat.getColor(HomeScreenActivity.this, R.color.green));
                 } else {
+                    successIcon.setVisibility(View.GONE);
                     try {
                         String errorMessage = new Gson().fromJson(response.errorBody().string(), CouponCodeRedeemResponse.class).message();
                         tvResult.setText(errorMessage);
@@ -585,6 +613,8 @@ public class HomeScreenActivity extends Activity {
 
             @Override
             public void onFailure(@NonNull Call<CouponCodeRedeemResponse> call, @NonNull Throwable t) {
+                progressBar.setVisibility(View.GONE);
+                successIcon.setVisibility(View.GONE);
                 tvResult.setVisibility(View.VISIBLE);
                 tvResult.setText("Error: Unable to redeem coupon.");
                 tvResult.setTextColor(ContextCompat.getColor(HomeScreenActivity.this, R.color.red));

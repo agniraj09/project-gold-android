@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -48,8 +49,17 @@ public class ArtifactNameAdapter extends RecyclerView.Adapter<ArtifactNameAdapte
         });
 
         holder.removeButton.setOnClickListener(v -> {
-            artifacts.remove(holder.getAdapterPosition());
-            notifyItemRemoved(holder.getAdapterPosition());
+            int positionToRemove = holder.getAdapterPosition();
+            if (positionToRemove != RecyclerView.NO_POSITION) {
+                artifacts.remove(positionToRemove);
+                // Check if this is the last element, then notifyDataSetChanged
+                if (artifacts.isEmpty()) {
+                    notifyDataSetChanged();
+                } else {
+                    notifyItemRemoved(positionToRemove);
+                    notifyItemRangeChanged(positionToRemove, getItemCount());
+                }
+            }
         });
     }
 
@@ -60,7 +70,7 @@ public class ArtifactNameAdapter extends RecyclerView.Adapter<ArtifactNameAdapte
 
     static class ViewHolder extends RecyclerView.ViewHolder {
         EditText artifactNameEditText;
-        ImageButton removeButton;
+        View removeButton;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
