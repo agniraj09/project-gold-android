@@ -73,22 +73,27 @@ public class ArtifactEditAdapter extends RecyclerView.Adapter<ArtifactEditAdapte
         holder.availabilitySwitch.setOnCheckedChangeListener((buttonView, isChecked) -> artifact.setStatus(isChecked ? "Available" : "Unavailable"));
 
         holder.removeButton.setOnClickListener(v -> {
-            int positionToRemove = holder.getAdapterPosition();
-            if (positionToRemove != RecyclerView.NO_POSITION) {
-                artifacts.remove(positionToRemove);
-
-                // Check if the list is empty after the removal
-                if (artifacts.isEmpty()) {
-                    // Notify that the entire dataset has changed
-                    notifyDataSetChanged();
-                } else {
-                    // Otherwise, just notify about the item removal
-                    notifyItemRemoved(positionToRemove);
-                    notifyItemRangeChanged(positionToRemove, getItemCount());
-                }
-            }
+            int positionToRemove = holder.getBindingAdapterPosition();
+            removeArtifact(positionToRemove);
         });
     }
+
+    public void removeArtifact(int position) {
+        if (position != RecyclerView.NO_POSITION) {
+            artifacts.remove(position);
+            notifyItemRemoved(position);
+            if (position < artifacts.size()) {
+                notifyItemRangeChanged(position, artifacts.size() - position);
+            }
+        }
+    }
+
+
+    public void addArtifact(ArtifactDetailsDTO artifact) {
+        artifacts.add(artifact);  // Add the new artifact
+        notifyItemInserted(artifacts.size() - 1);  // Notify RecyclerView about the new item
+    }
+
 
     @Override
     public int getItemCount() {

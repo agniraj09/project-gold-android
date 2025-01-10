@@ -36,32 +36,39 @@ public class ArtifactNameAdapter extends RecyclerView.Adapter<ArtifactNameAdapte
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+        // Clear existing listeners to avoid duplication
+        holder.artifactNameEditText.setOnFocusChangeListener(null);
         holder.artifactNameEditText.setText(artifacts.get(position));
+
         holder.artifactNameEditText.addTextChangedListener(new TextWatcher() {
             @Override
             public void afterTextChanged(Editable s) {
-                artifacts.set(holder.getAdapterPosition(), s.toString());
+                int adapterPosition = holder.getBindingAdapterPosition();
+                if (adapterPosition != RecyclerView.NO_POSITION) {
+                    artifacts.set(adapterPosition, s.toString());
+                }
             }
 
-            // Other methods can be left empty
             @Override public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
             @Override public void onTextChanged(CharSequence s, int start, int before, int count) {}
         });
 
+        // Remove item on button click
         holder.removeButton.setOnClickListener(v -> {
-            int positionToRemove = holder.getAdapterPosition();
+            int positionToRemove = holder.getBindingAdapterPosition();
             if (positionToRemove != RecyclerView.NO_POSITION) {
                 artifacts.remove(positionToRemove);
-                // Check if this is the last element, then notifyDataSetChanged
-                if (artifacts.isEmpty()) {
-                    notifyDataSetChanged();
-                } else {
-                    notifyItemRemoved(positionToRemove);
-                    notifyItemRangeChanged(positionToRemove, getItemCount());
-                }
+                notifyItemRemoved(positionToRemove);
+                notifyItemRangeChanged(positionToRemove, artifacts.size() - positionToRemove);
             }
         });
     }
+
+    public void addArtifact(String artifactName) {
+        artifacts.add(artifactName);
+        notifyItemInserted(artifacts.size() - 1);
+    }
+
 
     @Override
     public int getItemCount() {

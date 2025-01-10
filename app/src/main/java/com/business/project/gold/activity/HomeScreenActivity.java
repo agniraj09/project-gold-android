@@ -139,6 +139,7 @@ public class HomeScreenActivity extends Activity {
         BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(this, R.style.DialogStyle);
         View dialogView = LayoutInflater.from(this).inflate(R.layout.bottom_sheet_edit_artifact, null);
         bottomSheetDialog.setContentView(dialogView);
+        bottomSheetDialog.setCancelable(false);
 
         // Get the BottomSheetBehavior to manage the sheet's state
         BottomSheetBehavior<?> behavior = BottomSheetBehavior.from((View) dialogView.getParent());
@@ -176,8 +177,7 @@ public class HomeScreenActivity extends Activity {
 
         // Add Artifact Button
         addArtifactButton.setOnClickListener(v -> {
-            artifacts.add(new ArtifactDetailsDTO(1,"","", "Available")); // Add a new artifact with default values
-            artifactAdapter.notifyItemInserted(artifacts.size() - 1);
+            artifactAdapter.addArtifact(new ArtifactDetailsDTO(1,"","", "Available"));
         });
 
         cancelButton.setOnClickListener(v -> {
@@ -260,6 +260,7 @@ public class HomeScreenActivity extends Activity {
         View dialogView = LayoutInflater.from(this).inflate(R.layout.bottom_sheet_add_artifact, null);
 
         bottomSheetDialog.setContentView(dialogView);
+        bottomSheetDialog.setCancelable(false);
 
         // Get the BottomSheetBehavior to manage the sheet's state
         BottomSheetBehavior<?> behavior = BottomSheetBehavior.from((View) dialogView.getParent());
@@ -281,8 +282,7 @@ public class HomeScreenActivity extends Activity {
 
         // Add Artifact
         addArtifactButton.setOnClickListener(v -> {
-            artifacts.add("");
-            artifactAdapter.notifyItemInserted(artifacts.size() - 1);
+            artifactAdapter.addArtifact("");
         });
 
         cancelButton.setOnClickListener(v -> {
@@ -424,8 +424,10 @@ public class HomeScreenActivity extends Activity {
 
     private void checkAvailability(String date, String groupName, TextView resultsLabel, RecyclerView resultsRecyclerView) {
         Call<Map<String, String>> call = RetrofitConfig.getApiService().checkAvailability(date, groupName);
+        String label = "Artifacts for " + groupName;
+        resultsLabel.setText(label);
 
-        call.enqueue(new Callback<Map<String, String>>() {
+        call.enqueue(new Callback<>() {
             @Override
             public void onResponse(@NonNull Call<Map<String, String>> call, @NonNull Response<Map<String, String>> response) {
                 if (response.isSuccessful() && response.body() != null) {

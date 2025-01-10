@@ -51,11 +51,11 @@
                 android:text="@string/new_order_label"
                 android:textAllCaps="false"
                 android:textColor="@color/main_label_color"
-                android:textSize="14sp"
+                android:textSize="16sp"
                 android:textStyle="bold"
                 app:cornerRadius="12dp"
                 app:strokeColor="@color/main_label_color"
-                app:strokeWidth="2dp" />
+                app:strokeWidth="1dp" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/viewOrdersButton"
@@ -70,11 +70,11 @@
                 android:text="@string/view_orders_label"
                 android:textAllCaps="false"
                 android:textColor="@color/main_label_color"
-                android:textSize="14sp"
+                android:textSize="16sp"
                 android:textStyle="bold"
                 app:cornerRadius="12dp"
                 app:strokeColor="@color/main_label_color"
-                app:strokeWidth="2dp" />
+                app:strokeWidth="1dp" />
         </LinearLayout>
 
         <!-- Row 2: Revenue and Inventory -->
@@ -98,11 +98,11 @@
                 android:text="@string/revenue_label"
                 android:textAllCaps="false"
                 android:textColor="@color/main_label_color"
-                android:textSize="14sp"
+                android:textSize="16sp"
                 android:textStyle="bold"
                 app:cornerRadius="12dp"
                 app:strokeColor="@color/main_label_color"
-                app:strokeWidth="2dp" />
+                app:strokeWidth="1dp" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/inventoryButton"
@@ -117,11 +117,11 @@
                 android:text="@string/inventory_label"
                 android:textAllCaps="false"
                 android:textColor="@color/main_label_color"
-                android:textSize="14sp"
+                android:textSize="16sp"
                 android:textStyle="bold"
                 app:cornerRadius="12dp"
                 app:strokeColor="@color/main_label_color"
-                app:strokeWidth="2dp" />
+                app:strokeWidth="1dp" />
         </LinearLayout>
 
         <!-- Row 3: Coupon Code  -->
@@ -142,14 +142,14 @@
                 android:elevation="4dp"
                 android:gravity="center"
                 android:paddingTop="18dp"
-                android:text="Coupon Code"
+                android:text="Coupons"
                 android:textAllCaps="false"
                 android:textColor="@color/main_label_color"
-                android:textSize="14sp"
+                android:textSize="16sp"
                 android:textStyle="bold"
                 app:cornerRadius="12dp"
                 app:strokeColor="@color/main_label_color"
-                app:strokeWidth="2dp" />
+                app:strokeWidth="1dp" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/calendar_view_button"
@@ -164,11 +164,11 @@
                 android:text="Timeline"
                 android:textAllCaps="false"
                 android:textColor="@color/main_label_color"
-                android:textSize="14sp"
+                android:textSize="16sp"
                 android:textStyle="bold"
                 app:cornerRadius="12dp"
                 app:strokeColor="@color/main_label_color"
-                app:strokeWidth="2dp" />
+                app:strokeWidth="1dp" />
         </LinearLayout>
     </LinearLayout>
 

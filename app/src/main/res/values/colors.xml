@@ -9,13 +9,14 @@
     <color name="button_gradient_start">#4CAF50</color> <!-- Green shade -->
     <color name="button_gradient_end">#2196F3</color> <!-- Blue shade -->
     <color name="home_screen_menu_button">#3F51B5</color>
-    <color name="rev_label">#FF000000</color>
-    <color name="rev_value">#FF000000</color>
+    <color name="rev_label">#FFFFFFFF</color>
+    <color name="rev_value">#FFFFFFFF</color>
     <color name="new_ord_label">#FF000000</color>
 
     <color name="action_bar_color">#13357C</color> <!-- Orange color -->
     <color name="action_bar_color_dark">#0C204B</color> <!-- Darker shade for status bar -->
 
+    <color name="lightgrey">#a1c6cbcf</color>
 
     <color name="labelColor">#757575</color> <!-- Material Gray -->
     <color name="countColor">#6200EE</color> <!-- Material Purple -->
@@ -46,7 +47,7 @@
     <color name="year">#999999</color>
     <color name="title">#222222</color>
     <color name="sortBar">#56dee4e9</color>
-    <color name="sortBarLine">#a1c6cbcf</color>
+
     <color name="transparent">#00C6CBCF</color>
     <color name="pressed">#498BCC</color>
 </resources>

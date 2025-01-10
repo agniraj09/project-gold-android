@@ -37,10 +37,12 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
+                    android:letterSpacing="0.05"
+                    android:lineSpacingExtra="4sp"
                     android:text="Orders"
                     android:textAlignment="center"
-                    android:textColor="@color/rev_label"
-                    android:textSize="20sp"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="22sp"
                     android:textStyle="bold" />
 
                 <!-- Total Orders and Total Income Card -->
@@ -48,6 +50,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
+                    android:backgroundTint="@color/colorPrimary"
                     app:cardCornerRadius="8dp"
                     app:cardElevation="4dp">
 
@@ -186,12 +189,14 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="20dp"
                     android:layout_marginBottom="10dp"
+                    android:letterSpacing="0.05"
+                    android:lineSpacingExtra="4sp"
                     android:text="Average Income"
                     android:textAlignment="center"
-                    android:textColor="@color/rev_label"
-                    android:textSize="20sp"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="22sp"
                     android:textStyle="bold" />
 
                 <!-- Share State Section -->
@@ -199,6 +204,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
+                    android:backgroundTint="@color/colorPrimary"
                     app:cardCornerRadius="8dp"
                     app:cardElevation="4dp">
 
@@ -333,11 +339,23 @@
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
 
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="10dp"
+                    android:letterSpacing="0.05"
+                    android:lineSpacingExtra="4sp"
+                    android:text="Individual Share"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="22sp"
+                    android:textStyle="bold" />
+
                 <!-- Participant List Header -->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="15dp"
                     android:background="@color/colorPrimary"
                     android:orientation="horizontal"
                     android:padding="10dp">
